@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Presentation — From Preferences to Places</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/slides.css" />
+</head>
+<body>
+
+  <!-- UI Controls -->
+  <div class="slide-ui">
+    <a href="index.html" class="back-btn" title="Back to Home (ESC)">
+      <span class="back-arrow">←</span>
+      <span class="back-label">HOME</span>
+    </a>
+    <div class="slide-counter">
+      <span id="current-num">1</span>
+      <span class="counter-sep">/</span>
+      <span id="total-num">14</span>
+    </div>
+    <div class="slide-progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- Mouse Navigation Zones -->
+  <div class="nav-zone left" id="zone-left" title="Previous Slide">
+    <div class="nav-icon" id="icon-left">‹</div>
+  </div>
+  <div class="nav-zone right" id="zone-right" title="Next Slide">
+    <div class="nav-icon" id="icon-right">›</div>
+  </div>
+
+  <!-- Slide Deck -->
+  <div class="slide-deck" id="slide-deck">
+
+    <!-- Slide 1: Cover -->
+    <div class="slide active" data-slide="1">
+      <div class="slide-bg slide-bg-cover">
+        <div class="bg-grid"></div>
+        <div class="bg-glow glow-tl"></div>
+        <div class="bg-glow glow-br"></div>
+      </div>
+      <div class="slide-content center">
+        <div class="s-badge">Design Thesis 2026 · Mid Review</div>
+        <h1 class="s-hero-title">
+          <span>FROM PREFERENCES</span>
+          <span class="s-accent">TO PLACES</span>
+        </h1>
+        <p class="s-hero-sub">A Computable, Human-led Workflow for<br />Redesigning Urban Parks</p>
+        <div class="s-divider"></div>
+        <div class="s-author-block">
+          <div class="s-author-name">WEN GUANGYUAN</div>
+          <div class="s-author-meta">Advisors: Ervine Lin · Dorothy Tang</div>
+          <div class="s-author-meta">NUS Master of Landscape Architecture</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2: Opening Quote -->
+    <div class="slide" data-slide="2">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+        <div class="bg-glow glow-center"></div>
+      </div>
+      <div class="slide-content center">
+        <div class="s-label">THE QUESTION</div>
+        <div class="s-quote-wrap">
+          <div class="s-quote-mark">"</div>
+          <blockquote class="s-quote">
+            We do collaborative Word documents and Excel sheets...<br />
+            landscape remains an isolated expert silo.<br /><br />
+            <strong>Why can't we do a collaborative master plan?</strong>
+          </blockquote>
+        </div>
+        <p class="s-quote-context">This question drives the entire research agenda —<br />and the platform built to answer it.</p>
+      </div>
+    </div>
+
+    <!-- Slide 3: Tool Gap -->
+    <div class="slide" data-slide="3">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+      </div>
+      <div class="slide-content">
+        <div class="s-label">PROBLEM STATEMENT</div>
+        <h2 class="s-title">The Tool Gap in Design:<br /><span class="s-accent">Fragmentation vs. Unity</span></h2>
+        <p class="s-lead">Shaping landscape architecture: the tools we use define what's possible.</p>
+        <div class="s-two-col">
+          <div class="s-card">
+            <div class="s-card-icon">⬡</div>
+            <h3>Isolated Islands</h3>
+            <p>Office work is seamless — Docs, Sheets, Slides. Yet the master plan still lives in a single-user expert silo. The process is opaque, inaccessible, and unaccountable to those it affects most.</p>
+          </div>
+          <div class="s-card">
+            <div class="s-card-icon">◎</div>
+            <h3>Accessibility Gap</h3>
+            <p>Professional CAD/BIM tools carry enormous technical barriers. There is no lightweight, browser-based way for the public or clients to meaningfully participate in landscape design conversations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 4: Remote Collaboration -->
+    <div class="slide" data-slide="4">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+        <div class="bg-glow glow-tr"></div>
+      </div>
+      <div class="slide-content">
+        <div class="s-label">THE SOLUTION</div>
+        <h2 class="s-title">Remote Collaboration Platform:<br /><span class="s-accent">Universal Accessibility</span></h2>
+        <p class="s-lead">A web interface designed for remote participants — no installation, just a link.</p>
+        <div class="s-feature-list">
+          <div class="s-feature-item">
+            <div class="s-fi-num">01</div>
+            <div class="s-fi-content">
+              <h4>Zero-barrier Access</h4>
+              <p>Join the design conversation from any device. No software to install. No training required. Just open the link and start placing assets on the site plan.</p>
+            </div>
+          </div>
+          <div class="s-feature-item">
+            <div class="s-fi-num">02</div>
+            <div class="s-fi-content">
+              <h4>Beyond a Whiteboard</h4>
+              <p>Unlike Figma or Canva, this engine records standardized assets with geometric data. Every click is a structured coordinate ready for professional workflow integration.</p>
+            </div>
+          </div>
+          <div class="s-feature-item">
+            <div class="s-fi-num">03</div>
+            <div class="s-fi-content">
+              <h4>Professional Integration</h4>
+              <p>The output seamlessly integrates into Rhino, BIM, and AutoCAD. Public participation becomes technically actionable — not just symbolic.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 5: Site Lab -->
+    <div class="slide" data-slide="5">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+        <div class="bg-glow glow-bl"></div>
+      </div>
+      <div class="slide-content">
+        <div class="s-label">SITE LABORATORY</div>
+        <h2 class="s-title">Speaker's Corner —<br /><span class="s-accent">Hong Lim Park, Singapore</span></h2>
+        <div class="s-site-grid">
+          <div class="s-site-card">
+            <div class="s-site-tag">Democratic Context</div>
+            <p>Singapore's most symbolically democratic public space. If a park can be redesigned through a "Democratic Process," <strong>Hong Lim Park is the ultimate proving ground</strong>.</p>
+            <div class="s-site-facts">
+              <div class="s-fact">
+                <span class="s-fact-icon">◐</span>
+                Supports high-pressure needs: rallies, speeches, daily recreation
+              </div>
+              <div class="s-fact">
+                <span class="s-fact-icon">◐</span>
+                Key elements: Outdoor Stage, Central Lawn, Shaded Perimeters
+              </div>
+              <div class="s-fact">
+                <span class="s-fact-icon">◐</span>
+                Located adjacent to Clarke Quay MRT
+              </div>
+            </div>
+          </div>
+          <div class="s-site-card">
+            <div class="s-site-tag">Research Hypothesis</div>
+            <p>When we transform <strong>100 individual subjective preferences</strong> into geographical coordinate data (X, Y), the aggregated heatmap becomes a <strong>mathematical mandate</strong>.</p>
+            <div class="s-site-facts">
+              <div class="s-fact">
+                <span class="s-fact-icon">◐</span>
+                300 design sessions → 300 JSON files
+              </div>
+              <div class="s-fact">
+                <span class="s-fact-icon">◐</span>
+                Python aggregator → 1 consensus heatmap
+              </div>
+              <div class="s-fact">
+                <span class="s-fact-icon">◐</span>
+                Every dimension traceable to its source data
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 6: Landscape Pro Interface -->
+    <div class="slide" data-slide="6">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+        <div class="bg-glow glow-tl"></div>
+        <div class="bg-glow glow-br"></div>
+      </div>
+      <div class="slide-content center">
+        <div class="s-label">THE PLATFORM</div>
+        <h2 class="s-title" style="text-align:center">
+          <span class="s-accent" style="font-size:1.3em">LANDSCAPE PRO</span>
+        </h2>
+        <p class="s-hero-sub" style="max-width:560px;margin:0 auto 40px">A browser-based collaborative design platform that transforms public spatial preferences into computable landscape data.</p>
+        <div class="s-platform-tags">
+          <span class="s-ptag">Browser-based</span>
+          <span class="s-ptag">Real-time Sync</span>
+          <span class="s-ptag">JSON Export</span>
+          <span class="s-ptag">BIM-Ready</span>
+          <span class="s-ptag">Budget Tracking</span>
+          <span class="s-ptag">Multi-template</span>
+        </div>
+        <div class="s-platform-link">
+          <a href="https://landscape-configurator.vercel.app/" target="_blank" class="s-link-btn">
+            Open Landscape Pro Interface →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 7: Structured Data Export -->
+    <div class="slide" data-slide="7">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+      </div>
+      <div class="slide-content">
+        <div class="s-label">COMPUTABLE DIFFERENTIATOR</div>
+        <h2 class="s-title">Structured Data Export:<br /><span class="s-accent">Every Click Has Coordinates</span></h2>
+        <p class="s-lead">Each asset placement is captured as a structured coordinate set and instantly exportable as JSON for Rhino, BIM, and AutoCAD.</p>
+        <div class="s-table-wrap">
+          <table class="s-table">
+            <thead>
+              <tr>
+                <th>Asset_ID</th>
+                <th>Coord_X</th>
+                <th>Coord_Y</th>
+                <th>Area</th>
+                <th>Rotation</th>
+                <th>Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-id">TREE_S_04</td>
+                <td>142.56</td>
+                <td>88.91</td>
+                <td>3m × 3m</td>
+                <td>45°</td>
+                <td class="td-cost">$450</td>
+              </tr>
+              <tr>
+                <td class="td-id">SHRUBS_M_12</td>
+                <td>144.10</td>
+                <td>86.20</td>
+                <td>1.8m × 1.8m</td>
+                <td>12°</td>
+                <td class="td-cost">$120</td>
+              </tr>
+              <tr>
+                <td class="td-id">CENTRAL_HUB_A1</td>
+                <td>210.55</td>
+                <td>88.40</td>
+                <td>—</td>
+                <td>0°</td>
+                <td class="td-cost">—</td>
+              </tr>
+              <tr>
+                <td class="td-id">WATER_P1</td>
+                <td>110.22</td>
+                <td>75.40</td>
+                <td>10m²</td>
+                <td>—</td>
+                <td class="td-cost">$3,804</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="s-table-note">Every session generates a JSON file — making each participant's design technically actionable.</div>
+      </div>
+    </div>
+
+    <!-- Slide 8: Data Flow -->
+    <div class="slide" data-slide="8">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+        <div class="bg-glow glow-center"></div>
+      </div>
+      <div class="slide-content">
+        <div class="s-label">THE METHODOLOGY</div>
+        <h2 class="s-title">Data Flow:<br /><span class="s-accent">Preference to Places</span></h2>
+        <div class="s-flow">
+          <div class="s-flow-step">
+            <div class="s-flow-num">01</div>
+            <div class="s-flow-body">
+              <h4>HARVEST</h4>
+              <p>Individual sessions recorded as technical coordinate lists</p>
+            </div>
+          </div>
+          <div class="s-flow-arrow">→</div>
+          <div class="s-flow-step">
+            <div class="s-flow-num">02</div>
+            <div class="s-flow-body">
+              <h4>EXPORT</h4>
+              <p>300 design layouts → 300 JSON files</p>
+            </div>
+          </div>
+          <div class="s-flow-arrow">→</div>
+          <div class="s-flow-step">
+            <div class="s-flow-num">03</div>
+            <div class="s-flow-body">
+              <h4>AGGREGATE</h4>
+              <p>Python script merges data and calculates spatial density</p>
+            </div>
+          </div>
+          <div class="s-flow-arrow">→</div>
+          <div class="s-flow-step">
+            <div class="s-flow-num">04</div>
+            <div class="s-flow-body">
+              <h4>TRANSLATE</h4>
+              <p>Consensus reveals the most "democratic" layout as heatmap</p>
+            </div>
+          </div>
+        </div>
+        <div class="s-scale-note">
+          <span class="s-scale-num">300</span>
+          <span class="s-scale-sep">→</span>
+          <span class="s-scale-num">300</span>
+          <span class="s-scale-label">JSON Files</span>
+          <span class="s-scale-sep">→</span>
+          <span class="s-scale-label">Python Aggregator</span>
+          <span class="s-scale-sep">→</span>
+          <span class="s-scale-num">1</span>
+          <span class="s-scale-label">Consensus Heatmap</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 9: Logic Bridge -->
+    <div class="slide" data-slide="9">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+        <div class="bg-glow glow-tr"></div>
+      </div>
+      <div class="slide-content">
+        <div class="s-label">THE LOGIC BRIDGE</div>
+        <h2 class="s-title">Translating Preference to Rules:<br /><span class="s-accent">IF-THEN Design Logic</span></h2>
+        <p class="s-lead">Public spatial patterns are converted into CAD-exportable design rules. Every dimension in the final plan is mathematically mandated.</p>
+        <div class="s-code-block">
+          <div class="s-code-header">
+            <span class="s-dot red"></span>
+            <span class="s-dot yellow"></span>
+            <span class="s-dot green"></span>
+            <span class="s-code-title">design_rules.json</span>
+          </div>
+          <pre class="s-code">IF (User_Dwell_Density > 0.8)
+   AND (Solar_Radiation > 400W)
+THEN [Add_Canopy_Radius = 6m]
+
+<span class="s-comment">// Path width, bench spacing, canopy radius</span>
+<span class="s-comment">// — each dimension is linked to a Rule ID</span>
+<span class="s-comment">// — each Rule ID backed by the JSON dataset</span></pre>
+        </div>
+        <div class="s-audit-note">
+          <div class="s-audit-icon">◈</div>
+          <div>
+            <strong>Full Auditability:</strong> The evidence chain runs from raw preference data → spatial density map → IF-THEN rule → final dimension in the CAD file.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 10: Limitations -->
+    <div class="slide" data-slide="10">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+      </div>
+      <div class="slide-content">
+        <div class="s-label">HONEST ASSESSMENT</div>
+        <h2 class="s-title">Limitations &amp;<br /><span class="s-accent">Mitigation Strategies</span></h2>
+        <p class="s-lead">Every methodology has blind spots. Here's how this research addresses them.</p>
+        <div class="s-limit-table">
+          <div class="s-limit-row header">
+            <div class="s-limit-problem">Challenge</div>
+            <div class="s-limit-arrow"></div>
+            <div class="s-limit-solution">Mitigation</div>
+          </div>
+          <div class="s-limit-row">
+            <div class="s-limit-problem">
+              <div class="s-limit-tag">Sampling Bias</div>
+              <p>Online tools may exclude elderly users and those without digital access</p>
+            </div>
+            <div class="s-limit-arrow">→</div>
+            <div class="s-limit-solution">
+              <p>Deploy physical tablets on-site to capture in-person participants alongside the digital cohort</p>
+            </div>
+          </div>
+          <div class="s-limit-row">
+            <div class="s-limit-problem">
+              <div class="s-limit-tag">Nonsensical Inputs</div>
+              <p>Users may place elements randomly, generating data that doesn't reflect genuine preference</p>
+            </div>
+            <div class="s-limit-arrow">→</div>
+            <div class="s-limit-solution">
+              <p>AI-assisted outlier detection filters sessions that deviate significantly from all spatial logic</p>
+            </div>
+          </div>
+          <div class="s-limit-row">
+            <div class="s-limit-problem">
+              <div class="s-limit-tag">Technical Constraints</div>
+              <p>IF-THEN rule logic may inadvertently suppress creative or unconventional design solutions</p>
+            </div>
+            <div class="s-limit-arrow">→</div>
+            <div class="s-limit-solution">
+              <p>Future versions will include a "Free Draw" mode to allow unconstrained input alongside the structured workflow</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 11: Future Development -->
+    <div class="slide" data-slide="11">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+        <div class="bg-glow glow-tl"></div>
+        <div class="bg-glow glow-br"></div>
+      </div>
+      <div class="slide-content">
+        <div class="s-label">FUTURE DEVELOPMENT</div>
+        <h2 class="s-title">Scaling Beyond<br /><span class="s-accent">Hong Lim Park</span></h2>
+        <p class="s-lead">Hong Lim Park is just the pilot study. The vision: expand this human-led workflow to Singapore's entire green network.</p>
+        <div class="s-vision-block">
+          <div class="s-vision-stat">
+            <div class="s-vstat-num">6M</div>
+            <div class="s-vstat-label">Planners — every Singapore resident continuously engaged in collaborative design</div>
+          </div>
+          <div class="s-vision-parks">
+            <div class="s-vpark">Fort Canning Park</div>
+            <span class="s-vpark-sep">·</span>
+            <div class="s-vpark">Marina Bay</div>
+            <span class="s-vpark-sep">·</span>
+            <div class="s-vpark">Bishan-Ang Mo Kio</div>
+            <span class="s-vpark-sep">·</span>
+            <div class="s-vpark">East Coast Park</div>
+          </div>
+          <p class="s-vision-desc">Imagine a city where the entire green network is continuously re-imagined by the people who use it — with every decision traceable, auditable, and professionally executable.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 12: Expert Extension -->
+    <div class="slide" data-slide="12">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+      </div>
+      <div class="slide-content">
+        <div class="s-label">NEXT STEPS</div>
+        <h2 class="s-title">The Expert Extension:<br /><span class="s-accent">Professional-Grade Engine</span></h2>
+        <p class="s-lead">Upgrading from a preference prototype to a full collaborative urbanism platform.</p>
+        <div class="s-expert-grid">
+          <div class="s-expert-card">
+            <div class="s-expert-icon">🌿</div>
+            <h4>Botany Module</h4>
+            <p>Species growth metrics and biodiversity selection. Integrate ecological performance data into every design decision.</p>
+          </div>
+          <div class="s-expert-card">
+            <div class="s-expert-icon">⚖️</div>
+            <h4>Policy Engine</h4>
+            <p>Real-time GNPR (Green Plot Ratio) and LRR compliance tracking. Every submission meets regulatory standards automatically.</p>
+          </div>
+          <div class="s-expert-card">
+            <div class="s-expert-icon">📊</div>
+            <h4>Economics Layer</h4>
+            <p>Automated cost estimation and full lifecycle maintenance cost analysis. Transparent economic impact of every design choice.</p>
+          </div>
+          <div class="s-expert-card">
+            <div class="s-expert-icon">🔗</div>
+            <h4>BIM Integration</h4>
+            <p>Direct live connection to BIM / Rhino-Inside. Close the loop between public preference and professional construction documentation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 13: Mismatch Analysis -->
+    <div class="slide" data-slide="13">
+      <div class="slide-bg">
+        <div class="bg-grid"></div>
+        <div class="bg-glow glow-center"></div>
+      </div>
+      <div class="slide-content">
+        <div class="s-label">APPLICATION</div>
+        <h2 class="s-title">Mismatch Analysis:<br /><span class="s-accent">Expert Intent vs. User Intuition</span></h2>
+        <p class="s-lead">The most powerful use of this data: visualizing where expert design and public preference diverge.</p>
+        <div class="s-mismatch-grid">
+          <div class="s-mismatch-card expert">
+            <div class="s-mm-tag">Group A — Expert</div>
+            <h4>Landscape Architects</h4>
+            <p>Follow standard environmental metrics and aesthetic conventions. Designs prioritise solar access, circulation efficiency, and professional standards.</p>
+            <div class="s-mm-icon">⬡</div>
+          </div>
+          <div class="s-mismatch-vs">
+            <div class="s-vs-circle">VS</div>
+            <div class="s-vs-arrow">↕</div>
+            <div class="s-vs-label">Heatmap<br />Divergence</div>
+          </div>
+          <div class="s-mismatch-card public">
+            <div class="s-mm-tag">Group B — Public</div>
+            <h4>Local Residents &amp; Visitors</h4>
+            <p>Rely on spatial intuition and lived experience. Designs reveal actual dwell patterns, shade-seeking behaviour, and informal gathering tendencies.</p>
+            <div class="s-mm-icon">◎</div>
+          </div>
+        </div>
+        <div class="s-mismatch-result">
+          The heatmap mathematically identifies mismatches in shade provision and dwell location — making design accountability <strong>quantifiable</strong>.
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 14: Conclusion -->
+    <div class="slide" data-slide="14">
+      <div class="slide-bg slide-bg-end">
+        <div class="bg-grid"></div>
+        <div class="bg-glow glow-tl"></div>
+        <div class="bg-glow glow-br"></div>
+        <div class="bg-glow glow-center"></div>
+      </div>
+      <div class="slide-content center">
+        <div class="s-label">CONCLUSION</div>
+        <h2 class="s-title" style="text-align:center;max-width:700px;margin:0 auto 40px">
+          Towards a<br /><span class="s-accent">Collaborative Dialogue</span>
+        </h2>
+        <p style="font-size:18px;color:rgba(255,255,255,0.7);text-align:center;max-width:600px;margin:0 auto 56px;line-height:1.7">
+          Transforming landscape architecture from an opaque expert process into an auditable, human-led collaborative workflow.
+        </p>
+        <div class="s-pillars">
+          <div class="s-pillar">
+            <div class="s-pillar-icon">◈</div>
+            <h4>HUMAN</h4>
+            <p>Human-led choices at every step</p>
+          </div>
+          <div class="s-pillar featured">
+            <div class="s-pillar-glow"></div>
+            <div class="s-pillar-icon">⬡</div>
+            <h4>DEMOCRATIC</h4>
+            <p>Traceable public agency</p>
+          </div>
+          <div class="s-pillar">
+            <div class="s-pillar-icon">◎</div>
+            <h4>COMPUTABLE</h4>
+            <p>Seamless data export</p>
+          </div>
+        </div>
+        <div class="s-final-line">THANK YOU FOR YOUR ATTENTION</div>
+        <div class="s-cta-row">
+          <a href="https://landscape-configurator.vercel.app/" target="_blank" class="s-link-btn">
+            Open Landscape Pro Interface →
+          </a>
+          <a href="index.html" class="s-link-btn-ghost">
+            ← Return to Home
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end slide-deck -->
+
+  <!-- Slide Thumbnails (dot nav) -->
+  <div class="dot-nav" id="dot-nav"></div>
+
+  <script src="js/slides.js"></script>
+</body>
+</html>

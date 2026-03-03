@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From Preferences to Places</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a class="nav-logo" href="#">
+        <span class="logo-dot"></span>
+        FROM PREFERENCES TO PLACES
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#vision">Vision</a></li>
+      </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="assets/images/hero-bg.jpg" alt="Hero Background" id="hero-bg-img" onerror="this.style.display='none'" />
+      <div class="hero-overlay"></div>
+      <div class="hero-particles" id="particles"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-badge reveal">Design Thesis 2026 · Mid Review</div>
+      <h1 class="hero-title reveal">
+        <span class="title-line">FROM PREFERENCES</span>
+        <span class="title-line accent">TO PLACES</span>
+      </h1>
+      <p class="hero-subtitle reveal">
+        A Computable, Human-led Workflow for<br />Redesigning Urban Parks
+      </p>
+      <p class="hero-author reveal">Wen Guangyuan · Advisors: Ervine Lin, Dorothy Tang</p>
+      <div class="hero-buttons reveal">
+        <a href="slides.html" class="btn btn-primary">
+          <span class="btn-icon">▶</span>
+          View Presentation
+        </a>
+        <a href="https://landscape-configurator.vercel.app/" target="_blank" class="btn btn-secondary">
+          Landscape Pro Interface
+          <span class="btn-arrow">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <section class="quote-section" id="about">
+    <div class="container">
+      <blockquote class="big-quote reveal">
+        <span class="quote-mark">"</span>
+        We do collaborative Word documents and Excel sheets...<br />
+        landscape remains an isolated expert silo.<br />
+        <strong>Why can't we do a collaborative master plan?</strong>
+        <span class="quote-mark closing">"</span>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="research">
+    <div class="container">
+      <div class="section-label reveal">THE PROBLEM</div>
+      <h2 class="section-title reveal">The Tool Gap in Design:<br /><span class="accent">Fragmentation vs. Unity</span></h2>
+      <div class="two-col reveal">
+        <div class="col-card">
+          <div class="col-icon">⬡</div>
+          <h3>Isolated Islands</h3>
+          <p>Office collaboration is seamless — Docs, Sheets, Slides. Yet the master plan still lives in a single-user expert silo, invisible and inaccessible to those it affects most.</p>
+        </div>
+        <div class="col-card">
+          <div class="col-icon">◎</div>
+          <h3>Accessibility Gap</h3>
+          <p>Professional CAD and BIM tools carry enormous technical barriers, preventing meaningful public participation and client engagement in landscape design decisions.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Site Lab Section -->
+  <section class="site-section" id="site">
+    <div class="container">
+      <div class="section-label reveal">SITE LABORATORY</div>
+      <h2 class="section-title reveal">Speaker's Corner —<br /><span class="accent">Hong Lim Park, Singapore</span></h2>
+      <div class="site-grid reveal">
+        <div class="site-info">
+          <div class="site-tag">Democratic Context</div>
+          <p>Singapore's most symbolically democratic public space. If a park is to be redesigned through a democratic process, <strong>Hong Lim Park is the ultimate choice</strong>.</p>
+          <ul class="site-list">
+            <li>Supports high-pressure needs: rallies, speeches, daily recreation</li>
+            <li>Key elements: Outdoor Stage, Central Lawn, Shaded Perimeters</li>
+            <li>Located next to Clarke Quay MRT</li>
+          </ul>
+        </div>
+        <div class="site-info">
+          <div class="site-tag">Auditability</div>
+          <p>Every design decision must be <strong>traceable and defensible</strong>. The platform records every click as a structured coordinate set, creating a complete audit trail from public preference to final design.</p>
+          <ul class="site-list">
+            <li>300 design sessions → 300 JSON files</li>
+            <li>Python aggregator → 1 consensus heatmap</li>
+            <li>Each dimension linked to a Rule ID</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow Section -->
+  <section class="workflow-section" id="workflow">
+    <div class="container">
+      <div class="section-label reveal">THE METHODOLOGY</div>
+      <h2 class="section-title reveal">Data Flow:<br /><span class="accent">Preference to Places</span></h2>
+      <div class="workflow-steps">
+        <div class="step reveal">
+          <div class="step-number">01</div>
+          <div class="step-content">
+            <h3>HARVEST</h3>
+            <p>Users enter the prototype via a simple link. Every asset placement is recorded as a structured coordinate set, enabling real-time data capture at scale.</p>
+          </div>
+        </div>
+        <div class="step-arrow reveal">→</div>
+        <div class="step reveal">
+          <div class="step-number">02</div>
+          <div class="step-content">
+            <h3>EXPORT</h3>
+            <p>The system generates a technical JSON list of coordinates: Asset_ID, Coord_X, Coord_Y, Area, Rotation, Cost — ready for immediate BIM / Rhino / AutoCAD integration.</p>
+          </div>
+        </div>
+        <div class="step-arrow reveal">→</div>
+        <div class="step reveal">
+          <div class="step-number">03</div>
+          <div class="step-content">
+            <h3>AGGREGATE</h3>
+            <p>Python scripts merge thousands of individual data points and calculate spatial density, transforming subjective choices into an objective consensus heatmap.</p>
+          </div>
+        </div>
+        <div class="step-arrow reveal">→</div>
+        <div class="step reveal">
+          <div class="step-number">04</div>
+          <div class="step-content">
+            <h3>TRANSLATE</h3>
+            <p>IF-THEN rules convert the heatmap into precise geometry for professional workflows. Every dimension in the final plan is mathematically mandated by the data.</p>
+          </div>
+        </div>
+      </div>
+      <div class="code-block reveal">
+        <div class="code-header">
+          <span class="code-dot red"></span>
+          <span class="code-dot yellow"></span>
+          <span class="code-dot green"></span>
+          <span class="code-title">design_rule.json</span>
+        </div>
+        <pre class="code-content">IF (User_Dwell_Density > 0.8)
+   AND (Solar_Radiation > 400W)
+THEN [Add_Canopy_Radius = 6m]
+
+<span class="code-comment">// Every dimension is traceable to a Rule ID</span>
+<span class="code-comment">// backed by the JSON dataset</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Features Section -->
+  <section class="features-section">
+    <div class="container">
+      <div class="section-label reveal">CORE PRINCIPLES</div>
+      <h2 class="section-title reveal">Three Pillars of<br /><span class="accent">Collaborative Landscape Design</span></h2>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-icon">◈</div>
+          <h3>HUMAN</h3>
+          <p>Human-led choices at every step. The platform empowers non-expert participants to make meaningful spatial decisions through an intuitive interface that requires zero technical knowledge.</p>
+          <div class="feature-tag">Preference-Driven</div>
+        </div>
+        <div class="feature-card reveal featured">
+          <div class="feature-glow"></div>
+          <div class="feature-icon">⬡</div>
+          <h3>DEMOCRATIC</h3>
+          <p>Traceable public agency. Every participant's input is recorded and weighted equally. The aggregated heatmap becomes a mathematical mandate — not just a suggestion.</p>
+          <div class="feature-tag">Auditable</div>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon">◎</div>
+          <h3>COMPUTABLE</h3>
+          <p>Seamless data export to professional workflows. Structured JSON coordinates integrate directly with Rhino, BIM, and AutoCAD — bridging public participation with expert execution.</p>
+          <div class="feature-tag">BIM-Ready</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Landscape Pro Preview Section -->
+  <section class="pro-section">
+    <div class="container">
+      <div class="pro-inner reveal">
+        <div class="pro-text">
+          <div class="section-label">THE PLATFORM</div>
+          <h2 class="section-title">LANDSCAPE PRO<br /><span class="accent">Interactive Interface</span></h2>
+          <p>A web-based collaborative design platform accessible via a simple link — no installation required. Users place landscape assets on a scaled site plan, generating structured coordinate data in real time.</p>
+          <ul class="pro-list">
+            <li>Real-time budget meter with cost tracking</li>
+            <li>Asset library: Big Trees, Benches, Plazas, Ponds</li>
+            <li>3 park style templates (Urban / Community / Nature)</li>
+            <li>Instant JSON export for professional workflows</li>
+          </ul>
+          <a href="https://landscape-configurator.vercel.app/" target="_blank" class="btn btn-primary">
+            Enter Landscape Pro Interface
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+        <div class="pro-visual">
+          <div class="terminal-window">
+            <div class="terminal-header">
+              <span class="code-dot red"></span>
+              <span class="code-dot yellow"></span>
+              <span class="code-dot green"></span>
+              <span style="margin-left:8px;font-size:11px;color:#888">session_data.json</span>
+            </div>
+            <pre class="terminal-content">{
+  "session_id": "HLP_2026_0042",
+  "participant": "Public_User",
+  "assets": [
+    {
+      "Asset_ID": "TREE_S_04",
+      "Coord_X": 142.56,
+      "Coord_Y": 88.91,
+      "Rotation": 45,
+      "Cost": 450
+    },
+    {
+      "Asset_ID": "BENCH_M_08",
+      "Coord_X": 144.10,
+      "Coord_Y": 86.20,
+      "Cost": 120
+    },
+    {
+      "Asset_ID": "WATER_P1",
+      "Coord_X": 110.22,
+      "Coord_Y": 75.40,
+      "Area": "10m²",
+      "Cost": 3804
+    }
+  ],
+  "total_cost": 4374,
+  "budget_delta": "+2.1%"
+}</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Future Vision Section -->
+  <section class="vision-section" id="vision">
+    <div class="container">
+      <div class="section-label reveal">FUTURE DEVELOPMENT</div>
+      <h2 class="section-title reveal">Scaling Beyond<br /><span class="accent">the Pilot</span></h2>
+      <p class="vision-desc reveal">Hong Lim Park is just the beginning. The vision: a city with <strong>6 million planners</strong> continuously engaged in a collaborative conversation — redesigning Fort Canning Park, Marina Bay, and the entire Singapore Green Network.</p>
+      <div class="vision-grid">
+        <div class="vision-card reveal">
+          <div class="vision-num">01</div>
+          <h4>Botany Module</h4>
+          <p>Species growth metrics and biodiversity selection, integrating ecological performance data into every design decision.</p>
+        </div>
+        <div class="vision-card reveal">
+          <div class="vision-num">02</div>
+          <h4>Policy Engine</h4>
+          <p>Real-time GNPR (Green Plot Ratio) and LRR compliance tracking, ensuring every public submission meets regulatory standards.</p>
+        </div>
+        <div class="vision-card reveal">
+          <div class="vision-num">03</div>
+          <h4>Economics Layer</h4>
+          <p>Automated cost estimation and full lifecycle maintenance analysis, making the economic impact of design choices transparent.</p>
+        </div>
+        <div class="vision-card reveal">
+          <div class="vision-num">04</div>
+          <h4>BIM Integration</h4>
+          <p>Direct live connection to BIM / Rhino-Inside, closing the loop between public preference and professional construction documentation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="footer-cta">
+    <div class="container">
+      <div class="footer-cta-inner reveal">
+        <h2>Towards a Collaborative Dialogue</h2>
+        <p>Transforming landscape architecture from an opaque expert process into an auditable, human-led collaborative workflow.</p>
+        <div class="hero-buttons">
+          <a href="slides.html" class="btn btn-primary">
+            <span class="btn-icon">▶</span>
+            View Presentation
+          </a>
+          <a href="https://landscape-configurator.vercel.app/" target="_blank" class="btn btn-secondary">
+            Landscape Pro Interface
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-left">
+          <span class="logo-dot"></span>
+          <span>FROM PREFERENCES TO PLACES</span>
+        </div>
+        <div class="footer-right">
+          <span>Design Thesis 2026 · NUS MLA · Wen Guangyuan</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

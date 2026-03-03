@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ChevronLeft, ChevronRight, Home, MapPin, Users, Database, Workflow, Lightbulb, BarChart3, ArrowRight } from 'lucide-react';
+import { ChevronRight, Home, MapPin, Users, Database, Lightbulb, BarChart3, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 

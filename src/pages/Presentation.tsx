@@ -409,9 +409,51 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 09 LIMITATIONS ───────────────────────────────────────── */
+    /* ── 09 RELATIONSHIP ANALYSIS — same format as Heatmap ─────── */
     {
       id: 9,
+      content: (
+        <S>
+          <H label="Application" title="Relationship Analysis" sub="Trade-off & Preference Patterns" />
+          <div className="flex-1 min-h-0 pb-6">
+            <W className="h-full flex flex-col gap-6">
+              {/* Top row: two images */}
+              <div className="grid grid-cols-2 gap-6 flex-1 min-h-0">
+                <div className="flex flex-col min-h-0">
+                  <div className="flex-1 min-h-0 flex items-center justify-center bg-transparent">
+                    <img src="/playground%20vs%20shurbs.png" alt="" className="w-full h-full object-contain" />
+                  </div>
+                  <div className="px-2 py-3 text-center flex-shrink-0">
+                    <span className="text-sm text-emerald-400 font-semibold leading-tight">Playground vs Shrubs</span>
+                  </div>
+                </div>
+                <div className="flex flex-col min-h-0">
+                  <div className="flex-1 min-h-0 flex items-center justify-center bg-transparent">
+                    <img src="/Public%20Trade-off%20Budget%20vs%20Ecology.png" alt="" className="w-full h-full object-contain" />
+                  </div>
+                  <div className="px-2 py-3 text-center flex-shrink-0">
+                    <span className="text-sm text-emerald-400 font-semibold leading-tight">Public Trade-off Budget vs Ecology</span>
+                  </div>
+                </div>
+              </div>
+              {/* Bottom row: one full-width image (longer) */}
+              <div className="flex flex-col flex-1 min-h-0">
+                <div className="flex-1 min-h-0 flex items-center justify-center bg-transparent">
+                  <img src="/Consumer%20psychology.png" alt="" className="w-full h-full object-contain" />
+                </div>
+                <div className="px-2 py-3 text-center flex-shrink-0">
+                  <span className="text-sm text-emerald-400 font-semibold leading-tight">Consumer Psychology</span>
+                </div>
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── 10 LIMITATIONS ───────────────────────────────────────── */
+    {
+      id: 10,
       content: (
         <S>
           <H label="Honest Assessment" title="Limitations & Mitigation" sub="Addressing Methodological Challenges" />
@@ -440,9 +482,9 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 10 FUTURE VISION ─────────────────────────────────────── */
+    /* ── 11 FUTURE VISION ─────────────────────────────────────── */
     {
-      id: 10,
+      id: 11,
       content: (
         <S noFaintBg>
           {/* Singapore green map — darkened to match theme */}
@@ -501,9 +543,9 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 11 EXPERT EXTENSION ──────────────────────────────────── */
+    /* ── 12 EXPERT EXTENSION ──────────────────────────────────── */
     {
-      id: 11,
+      id: 12,
       content: (
         <S>
           <H label="Next Steps" title="The Expert Extension" sub="Upgrading from Prototype to Professional Engine" />
@@ -535,9 +577,9 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 12 CONCLUSION ────────────────────────────────────────── */
+    /* ── 13 CONCLUSION ────────────────────────────────────────── */
     {
-      id: 12,
+      id: 13,
       content: (
         <S>
           <div className="flex flex-col h-full items-center justify-center py-8">

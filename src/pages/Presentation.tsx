@@ -286,9 +286,33 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 06 DATA FLOW ─────────────────────────────────────────── */
+    /* ── 06 LANDSCAPE PRO VIDEO ────────────────────────────────── */
     {
       id: 6,
+      content: (
+        <S>
+          <H label="The Platform" title="Landscape Pro" sub="Demo" />
+          <div className="flex-1 min-h-0 pb-6 flex items-center justify-center">
+            <W className="h-full flex items-center justify-center">
+              <div className="cursor-default max-w-full max-h-[70vh]">
+                <video
+                  src="/Landscape%20Pro.mp4"
+                  controls
+                  className="max-w-full max-h-[70vh] rounded-xl border border-white/10 bg-black"
+                  playsInline
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── 07 DATA FLOW ─────────────────────────────────────────── */
+    {
+      id: 7,
       content: (
         <S>
           <H label="The Methodology" title="Data Flow" sub="From Preference to Places" />
@@ -332,9 +356,9 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 07 LOGIC BRIDGE ──────────────────────────────────────── */
+    /* ── 08 LOGIC BRIDGE ──────────────────────────────────────── */
     {
-      id: 7,
+      id: 8,
       content: (
         <S>
           <H label="Translating Preference to Rules" title="The Logic Bridge" sub="IF-THEN Design Logic" />
@@ -380,9 +404,9 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 08 HEATMAP — 2×2 grid, four images + titles only ──────── */
+    /* ── 09 HEATMAP — 2×2 grid, four images + titles only ──────── */
     {
-      id: 8,
+      id: 9,
       content: (
         <S>
           <H label="Application" title="Heatmap" sub="Expert Intent vs. User Intuition" />
@@ -409,9 +433,9 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 09 RELATIONSHIP ANALYSIS — same format as Heatmap ─────── */
+    /* ── 10 RELATIONSHIP ANALYSIS — same format as Heatmap ─────── */
     {
-      id: 9,
+      id: 10,
       content: (
         <S>
           <H label="Application" title="Relationship Analysis" sub="Trade-off & Preference Patterns" />
@@ -451,9 +475,9 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 10 LIMITATIONS ───────────────────────────────────────── */
+    /* ── 11 LIMITATIONS ───────────────────────────────────────── */
     {
-      id: 10,
+      id: 11,
       content: (
         <S>
           <H label="Honest Assessment" title="Limitations & Mitigation" sub="Addressing Methodological Challenges" />
@@ -482,9 +506,9 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 11 FUTURE VISION ─────────────────────────────────────── */
+    /* ── 12 FUTURE VISION ─────────────────────────────────────── */
     {
-      id: 11,
+      id: 12,
       content: (
         <S noFaintBg>
           {/* Singapore green map — darkened to match theme */}
@@ -543,9 +567,9 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 12 EXPERT EXTENSION ──────────────────────────────────── */
+    /* ── 13 EXPERT EXTENSION ──────────────────────────────────── */
     {
-      id: 12,
+      id: 13,
       content: (
         <S>
           <H label="Next Steps" title="The Expert Extension" sub="Upgrading from Prototype to Professional Engine" />
@@ -577,9 +601,9 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 13 CONCLUSION ────────────────────────────────────────── */
+    /* ── 14 CONCLUSION ────────────────────────────────────────── */
     {
-      id: 13,
+      id: 14,
       content: (
         <S>
           <div className="flex flex-col h-full items-center justify-center py-8">

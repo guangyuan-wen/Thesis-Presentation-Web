@@ -1,25 +1,35 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ChevronRight, Home, MapPin, Users, Database, Lightbulb, BarChart3, ArrowRight } from 'lucide-react';
+import { ChevronRight, Home, MapPin, Users, Database, Lightbulb, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
 interface Slide { id: number; content: React.ReactNode; }
 
-/* ── Background wrapper (full-bleed). No bg = very faint honglim-park. ── */
+const TOKENS = {
+  paperBg: 'bg-[#f6f1e7]',
+  paperInk: 'text-[#1f2937]',
+  accent: 'text-emerald-600',
+  card: 'bg-[#fffdf7]/90 border border-[#d8d0c1] shadow-[0_8px_24px_rgba(56,48,37,0.10)] rounded-2xl',
+  fontDisplay: "'Inter', 'Segoe UI', sans-serif",
+  fontScript: "'Inter', 'Segoe UI', sans-serif",
+  fontBody: "'Inter', 'Segoe UI', sans-serif",
+};
+
+/* ── Background wrapper: hand-drawn paper stage ───────────────── */
 function S({ children, bg, noFaintBg }: { children: React.ReactNode; bg?: string; noFaintBg?: boolean }) {
   const showFaintBg = !noFaintBg && !bg;
   return (
-    <div className="relative w-full h-full flex flex-col overflow-hidden">
+    <div className={`relative w-full h-full flex flex-col overflow-hidden ${TOKENS.paperBg} ${TOKENS.paperInk}`}>
       {bg && (
         <>
           <img src={bg} alt="" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/65 via-[#0a0a0a]/50 to-[#0a0a0a]/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f6f1e7]/82 via-[#f6f1e7]/72 to-[#f6f1e7]/88" />
         </>
       )}
       {showFaintBg && (
         <>
-          <img src="/honglim-park.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.065]" aria-hidden />
-          <div className="absolute inset-0 bg-[#0a0a0a]/93" />
+          <img src="/honglim-park.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-[0.07]" aria-hidden />
+          <div className="absolute inset-0 bg-[#f6f1e7]/90" />
         </>
       )}
       <div className="relative z-10 flex flex-col h-full">{children}</div>
@@ -30,19 +40,26 @@ function S({ children, bg, noFaintBg }: { children: React.ReactNode; bg?: string
 /* ── Content container — left/right margin on every slide ──── */
 function W({ children, className = '' }: { children: React.ReactNode; className?: string }) {
   return (
-    <div className={`w-full max-w-[1320px] mx-auto px-12 ${className}`}>
+    <div className={`w-full max-w-[1280px] mx-auto px-10 ${className}`}>
       {children}
     </div>
   );
 }
 
-/* ── Slide header: centered, larger, with top spacing ─────────── */
+/* ── Slide header: paper-style hierarchy ───────────────────────── */
 function H({ label, title, sub }: { label?: string; title: string; sub?: string }) {
   return (
     <W className="pt-10 pb-4 flex-shrink-0 text-center">
-      {label && <div className="text-xs font-bold tracking-[0.22em] text-emerald-400 uppercase mb-2">{label}</div>}
-      <h2 className="text-4xl md:text-5xl font-bold leading-tight">{title}</h2>
-      {sub && <p className="mt-2 text-base md:text-lg text-emerald-400 font-medium">{sub}</p>}
+      {label && (
+        <div
+          className="text-xs font-bold tracking-[0.24em] text-emerald-700 uppercase mb-2"
+          style={{ fontFamily: TOKENS.fontScript }}
+        >
+          {label}
+        </div>
+      )}
+      <h2 className="text-4xl md:text-5xl font-semibold leading-tight tracking-tight" style={{ fontFamily: TOKENS.fontDisplay }}>{title}</h2>
+      {sub && <p className="mt-2 text-base md:text-lg text-emerald-700 font-medium" style={{ fontFamily: TOKENS.fontBody }}>{sub}</p>}
     </W>
   );
 }
@@ -63,37 +80,49 @@ export default function Presentation() {
     {
       id: 1,
       content: (
-        <S bg="/hero-bg.jpg">
-          <div className="flex flex-col items-center justify-center h-full text-center px-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-emerald-500/20 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-5">
-              <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-              Design Thesis 2026 · Mid Review
+        <S>
+          <div className="relative flex flex-col items-center justify-center h-full text-center px-12">
+            {/* Subtle info layer to reduce empty feeling on large screens */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-[22%] left-[8%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">Human-led</div>
+              <div className="absolute top-[28%] right-[9%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">Democratic</div>
+              <div className="absolute bottom-[27%] left-[10%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">Computable</div>
+              <div className="absolute bottom-[22%] right-[8%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">Collaborative</div>
+              <div className="absolute left-[7%] top-[30%] bottom-[30%] w-px bg-gradient-to-b from-transparent via-emerald-700/18 to-transparent" />
+              <div className="absolute right-[7%] top-[30%] bottom-[30%] w-px bg-gradient-to-b from-transparent via-emerald-700/18 to-transparent" />
             </div>
-            <h1 className="text-6xl md:text-8xl font-bold leading-tight mb-3">
-              <span className="bg-gradient-to-r from-white via-white to-gray-300 bg-clip-text text-transparent block">From Preferences</span>
-              <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent block">To Places</span>
+            <div
+              className="inline-flex items-center gap-2 px-5 py-2 bg-emerald-100/80 border border-emerald-200 rounded-full text-emerald-700 text-sm font-semibold tracking-widest uppercase mb-7"
+              style={{ fontFamily: TOKENS.fontScript }}
+            >
+              <span className="w-2 h-2 bg-emerald-700 rounded-full animate-pulse" />
+              Design Thesis 2026 · Final Review
+            </div>
+            <h1 className="text-7xl md:text-9xl leading-[0.95] mb-4" style={{ fontFamily: TOKENS.fontDisplay }}>
+              <span className="text-[#243247] block tracking-tight">From Preferences</span>
+              <span className="text-emerald-700 block tracking-tight">To Places</span>
             </h1>
-            <p className="text-lg text-gray-300 mb-7 max-w-xl">A Computable, Human-led Workflow for Redesigning Urban Parks</p>
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
+            <p className="text-2xl text-[#475569] mb-9 max-w-3xl" style={{ fontFamily: TOKENS.fontBody }}>A Computable, Human-led Workflow for Redesigning Urban Parks</p>
+            <div className="flex flex-wrap justify-center gap-3 mb-10">
               {['Human-led', 'Democratic', 'Computable', 'Collaborative'].map((t) => (
-                <span key={t} className="px-3 py-1.5 bg-white/10 rounded-full text-gray-300 text-sm border border-white/15">{t}</span>
+                <span key={t} className="px-4 py-2 bg-[#f4eee3] rounded-full text-[#475569] text-base border border-[#d8d0c1]" style={{ fontFamily: TOKENS.fontBody }}>{t}</span>
               ))}
             </div>
-            <div className="flex items-center gap-8 text-sm">
+            <div className="flex items-center gap-10 text-base">
               <div className="text-center">
-                <div className="text-emerald-400 font-semibold text-xs uppercase tracking-wider mb-1">Presenter</div>
-                <div className="text-white font-medium text-base">Wen Guangyuan</div>
+                <div className="text-emerald-700 font-semibold text-sm uppercase tracking-wider mb-1.5">Presenter</div>
+                <div className="text-[#1f2937] font-medium text-xl">Wen Guangyuan</div>
               </div>
-              <div className="w-px h-10 bg-white/20" />
+              <div className="w-px h-12 bg-[#d8d0c1]" />
               <div className="text-center">
-                <div className="text-emerald-400 font-semibold text-xs uppercase tracking-wider mb-1">Advisors</div>
-                <div className="text-white font-medium">Ervine LIN</div>
-                <div className="text-gray-400">Dorothy TANG</div>
+                <div className="text-emerald-700 font-semibold text-sm uppercase tracking-wider mb-1.5">Advisors</div>
+                <div className="text-[#1f2937] font-medium text-lg">Ervine LIN</div>
+                <div className="text-[#475569] text-lg">Dorothy TANG</div>
               </div>
-              <div className="w-px h-10 bg-white/20" />
+              <div className="w-px h-12 bg-[#d8d0c1]" />
               <div className="text-center">
-                <div className="text-gray-400 text-xs mb-1">Institution</div>
-                <div className="text-white text-sm font-medium">NUS · MLA</div>
+                <div className="text-[#64748b] text-sm mb-1.5">Institution</div>
+                <div className="text-[#1f2937] text-lg font-medium">NUS · MLA</div>
               </div>
             </div>
           </div>
@@ -150,9 +179,15 @@ export default function Presentation() {
         <S>
           <H label="The Solution" title="Remote Collaboration Platform" sub="Universal Accessibility" />
           <div className="flex-1 min-h-0 pb-6">
-            <W className="h-full grid lg:grid-cols-2 gap-8 items-center">
-              <div className="space-y-4">
-                <p className="text-gray-300 text-lg leading-relaxed">
+            <W className="pb-3 flex-shrink-0">
+              <p className="text-center text-[16px] text-[#64748b] leading-relaxed">
+                Participants join through a simple web link and co-design in real time, without software barriers.<br />
+                Every placement becomes structured spatial data that can be traced, aggregated, and exported to professional CAD/BIM pipelines.
+              </p>
+            </W>
+            <W className="h-full grid lg:grid-cols-2 gap-6 items-start mt-2">
+              <div className="space-y-3 p-5 bg-[#fffdf7]/85 border border-[#d8d0c1] rounded-2xl shadow-[0_8px_24px_rgba(56,48,37,0.08)]">
+                <p className="text-[#334155] text-xl leading-relaxed">
                   A web-based interface for remote participants — no installation required. Open a link to join
                   the design dialogue and start placing assets on a real site plan.
                 </p>
@@ -162,32 +197,32 @@ export default function Presentation() {
                   { t: 'Structured data export (JSON)', d: 'Every placement recorded as a coordinate set — not just a pixel.' },
                   { t: 'Professional CAD / BIM integration', d: 'Output flows directly into Rhino, AutoCAD, and BIM pipelines.' },
                 ].map((item, i) => (
-                  <div key={i} className="flex items-start gap-3 py-4 px-5 bg-white/5 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-colors">
-                    <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full flex-shrink-0 mt-1.5" />
+                  <div key={i} className="flex items-start gap-3 py-3.5 px-4 bg-[#f7f2e9] rounded-xl border border-[#d8d0c1] transition-colors">
+                    <div className="w-2.5 h-2.5 bg-emerald-700 rounded-full flex-shrink-0 mt-1.5" />
                     <div>
-                      <div className="font-semibold text-white text-base mb-1">{item.t}</div>
-                      <div className="text-gray-400 text-base leading-relaxed">{item.d}</div>
+                      <div className="font-semibold text-[#1f2937] text-[17px] mb-0.5">{item.t}</div>
+                      <div className="text-[#475569] text-[15px] leading-relaxed">{item.d}</div>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="space-y-4">
-                <div className="text-sm text-gray-500 font-semibold uppercase tracking-wider">Technical Output Comparison</div>
-                <div className="p-6 bg-white/5 rounded-xl border border-white/10">
-                  <div className="text-gray-300 font-mono text-base font-semibold mb-2">Standard Whiteboard Tools</div>
-                  <div className="text-gray-500 text-base">Figma / Canva / Miro → Visual diagrams only</div>
-                  <div className="text-gray-600 text-base mt-2">No geometry data · No coordinate output · Dead-end for professionals</div>
+              <div className="space-y-3 p-5 bg-[#fffdf7]/85 border border-[#d8d0c1] rounded-2xl shadow-[0_8px_24px_rgba(56,48,37,0.08)]">
+                <div className="text-[13px] text-emerald-700 font-semibold uppercase tracking-wider border-b border-[#d8d0c1] pb-2">Technical Output Comparison</div>
+                <div className="p-5 bg-[#f7f2e9] rounded-xl border border-[#d8d0c1]">
+                  <div className="text-[#1f2937] font-mono text-[17px] font-semibold mb-1.5">Standard Whiteboard Tools</div>
+                  <div className="text-[#64748b] text-[15px]">Figma / Canva / Miro → Visual diagrams only</div>
+                  <div className="text-[#94a3b8] text-[15px] mt-1.5">No geometry data · No coordinate output · Dead-end for professionals</div>
                 </div>
-                <div className="flex justify-center py-1">
-                  <div className="flex flex-col items-center gap-1 text-emerald-400/50">
+                <div className="flex justify-center py-0.5">
+                  <div className="flex flex-col items-center gap-1 text-emerald-700/70">
                     <ArrowRight className="w-5 h-5 rotate-90" />
-                    <span className="text-sm text-gray-600">LandscapePro changes this</span>
+                    <span className="text-[13px] text-[#64748b]">LandscapePro changes this</span>
                   </div>
                 </div>
-                <div className="p-6 bg-emerald-500/8 rounded-xl border border-emerald-500/25">
-                  <div className="text-emerald-400 font-mono text-base font-semibold mb-2">LandscapePro Engine</div>
-                  <div className="text-gray-300 text-base">Records standardized assets + geometry coordinates</div>
-                  <div className="text-emerald-400/70 text-base mt-2">→ Direct export to Rhino / BIM / AutoCAD</div>
+                <div className="p-5 bg-emerald-100/70 rounded-xl border border-emerald-200">
+                  <div className="text-emerald-700 font-mono text-[17px] font-semibold mb-1.5">LandscapePro Engine</div>
+                  <div className="text-[#334155] text-[15px]">Records standardized assets + geometry coordinates</div>
+                  <div className="text-emerald-700/80 text-[15px] mt-1.5">→ Direct export to Rhino / BIM / AutoCAD</div>
                 </div>
               </div>
             </W>
@@ -203,33 +238,33 @@ export default function Presentation() {
         <S>
           <H label="Site Laboratory" title="Speaker's Corner" sub="Hong Lim Park, Singapore" />
           <div className="flex-1 min-h-0 pb-6">
-            <W className="h-full grid grid-cols-[1fr_1fr] gap-8 items-stretch">
-              <div className="flex flex-col gap-5 min-h-0">
-                <p className="text-gray-300 text-lg leading-relaxed">
+            <W className="h-full grid grid-cols-[1fr_1fr] gap-8 items-center -mt-12">
+              <div className="flex flex-col gap-3 min-h-0">
+                <p className="text-[#334155] text-[18px] leading-relaxed">
                   Chosen as the <span className="text-emerald-400 font-semibold">"Laboratory of Democracy"</span> — the most symbolically
                   democratic public space in Singapore. Our case study hypothesises a total redesign driven entirely by the people.
                 </p>
-                <div className="grid grid-cols-1 gap-4 flex-1 min-h-0">
+                <div className="grid grid-cols-1 gap-2.5">
                   {[
                     { title: 'Democratic Context', desc: 'Testing public agency in spatial decisions' },
                     { title: 'Auditability', desc: 'Every decision fully traceable to source data' },
                     { title: 'Symbolic Location', desc: 'Adjacent to Clarke Quay MRT' },
                   ].map((item, i) => (
-                    <div key={i} className="p-5 bg-white/5 rounded-xl border border-white/10">
-                      <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full mb-3" />
-                      <h4 className="font-semibold text-white text-base mb-1.5">{item.title}</h4>
-                      <p className="text-gray-400 text-base leading-relaxed">{item.desc}</p>
+                    <div key={i} className="py-3 px-4 bg-[#fffdf7] rounded-xl border border-[#cfc6b5] shadow-[0_6px_16px_rgba(56,48,37,0.09)]">
+                      <div className="w-2.5 h-2.5 bg-emerald-400 rounded-full mb-2" />
+                      <h4 className="font-semibold text-[#1f2937] text-[17px] mb-1">{item.title}</h4>
+                      <p className="text-[#475569] text-[15px] leading-snug">{item.desc}</p>
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-wrap gap-6 text-base text-gray-400 pt-1 flex-shrink-0">
+                <div className="flex flex-wrap gap-5 text-[15px] text-[#475569] pt-1 flex-shrink-0">
                   <span>◐ Outdoor Stage & Central Lawn</span>
                   <span>◐ Shaded Perimeters</span>
-                  <span className="text-emerald-400 font-semibold">300+ Design Layouts Generated</span>
+                  <span className="text-emerald-400 font-semibold">50+ Design Layouts Generated</span>
                 </div>
               </div>
-              <div className="min-h-0 flex items-center justify-center bg-transparent">
-                <img src="/speaker-corner.jpg" alt="Speaker's Corner" className="w-full h-full object-contain rounded-lg" />
+              <div className="min-h-0 flex items-start justify-center bg-transparent">
+                <img src="/speaker-corner.jpg" alt="Speaker's Corner" className="w-full max-h-[55vh] object-contain rounded-lg" />
               </div>
             </W>
           </div>
@@ -252,23 +287,23 @@ export default function Presentation() {
           {/* Table + tags below */}
           <div className="flex-1 min-h-0 pb-5">
             <W className="h-full grid grid-cols-[1fr_180px] gap-5 items-start">
-              <div className="rounded-xl border border-white/10 overflow-hidden">
+              <div className={`${TOKENS.card} overflow-hidden`}>
                 <table className="w-full">
                   <thead>
-                    <tr className="bg-white/5 border-b border-white/10">
+                    <tr className="bg-[#f4eee3] border-b border-[#d8d0c1]">
                       {['Asset_ID', 'Coord_X', 'Coord_Y', 'Area', 'Rotation', 'Cost'].map((h) => (
-                        <th key={h} className="text-left py-3 px-4 text-emerald-400 font-bold uppercase tracking-wider text-sm">{h}</th>
+                        <th key={h} className="text-left py-3 px-4 text-emerald-700 font-bold uppercase tracking-wider text-sm">{h}</th>
                       ))}
                     </tr>
                   </thead>
-                  <tbody className="font-mono text-base text-gray-300">
+                  <tbody className="font-mono text-base text-[#334155]">
                     {[
                       ['TREE_S_04', '142.56', '88.91', '3m × 3m', '45°', '$450'],
                       ['SHRUBS_M_12', '144.10', '86.20', '1.8m × 1.8m', '12°', '$120'],
                       ['WATER_P1', '110.22', '75.40', '10m²', '—', '$3,804'],
                     ].map((row, i) => (
-                      <tr key={i} className="border-b border-white/5 hover:bg-white/5">
-                        <td className="py-3 px-4 text-emerald-400 font-semibold">{row[0]}</td>
+                      <tr key={i} className="border-b border-[#e5dece] hover:bg-[#faf6ee]">
+                        <td className="py-3 px-4 text-emerald-700 font-semibold">{row[0]}</td>
                         {row.slice(1).map((c, j) => <td key={j} className="py-3 px-4">{c}</td>)}
                       </tr>
                     ))}
@@ -277,7 +312,7 @@ export default function Presentation() {
               </div>
               <div className="flex flex-col gap-2">
                 {['Browser-based', 'Real-time Sync', 'JSON Export', 'Budget Tracking'].map((t) => (
-                  <span key={t} className="text-sm font-bold text-emerald-400 border border-emerald-500/30 bg-emerald-500/8 px-3 py-2 rounded-full text-center">{t}</span>
+                  <span key={t} className="text-sm font-bold text-emerald-700 border border-emerald-200 bg-emerald-100/70 px-3 py-2 rounded-full text-center">{t}</span>
                 ))}
               </div>
             </W>
@@ -316,9 +351,9 @@ export default function Presentation() {
       content: (
         <S>
           <H label="The Methodology" title="Data Flow" sub="From Preference to Places" />
-          {/* Workflow image — unchanged per user */}
-          <W className="pb-3 flex-shrink-0 max-h-[34vh]">
-            <div className="rounded-xl overflow-hidden border border-white/10 h-full flex items-center justify-center bg-[#141414]">
+          {/* Workflow image — larger, no white base, blended into layout */}
+          <W className="pb-2 flex-shrink-0 max-h-[44vh]">
+            <div className="h-full flex items-center justify-center bg-transparent">
               <img src="/workflow-visual.jpg" alt="Workflow" className="w-full h-full object-contain" />
             </div>
           </W>
@@ -327,28 +362,28 @@ export default function Presentation() {
             <W className="h-full flex flex-col gap-4">
               <div className="grid grid-cols-4 gap-4">
                 {[
-                  { step: '300', label: 'Design Layouts', desc: 'Individual sessions' },
-                  { step: '300', label: 'JSON Files', desc: 'Coordinate lists' },
-                  { step: '1', label: 'Python Aggregator', desc: 'Spatial density merging' },
+                  { step: '50', label: 'Design Layouts', desc: 'Individual sessions' },
+                  { step: '50', label: 'JSON Files', desc: 'Coordinate lists' },
+                  { step: '1', label: 'Python Aggregator+Grasshopper', desc: 'Spatial density merging' },
                   { step: '1', label: 'Consensus Heatmap', desc: 'Mathematical mandate' },
                 ].map((item, idx) => (
                   <div key={idx} className="relative">
-                    <div className="bg-white/5 rounded-xl p-5 border border-white/10 text-center">
-                      <div className="text-4xl font-bold text-emerald-400 mb-2">{item.step}</div>
+                    <div className={`${TOKENS.card} p-5 text-center`}>
+                      <div className="text-4xl font-bold text-emerald-700 mb-2">{item.step}</div>
                       <div className="font-semibold text-base mb-1">{item.label}</div>
-                      <div className="text-gray-500 text-sm">{item.desc}</div>
+                      <div className="text-[#64748b] text-sm">{item.desc}</div>
                     </div>
                     {idx < 3 && (
                       <div className="hidden md:flex absolute top-1/2 -right-2 -translate-y-1/2 z-10">
-                        <ChevronRight className="w-5 h-5 text-emerald-400/50" />
+                        <ChevronRight className="w-5 h-5 text-emerald-700/50" />
                       </div>
                     )}
                   </div>
                 ))}
               </div>
-              <div className="bg-[#141414] rounded-xl px-6 py-4 border border-white/10">
-                <span className="text-emerald-400 font-semibold text-base">The Mathematical Mandate — </span>
-                <span className="text-gray-300 text-base">When 100 individual subjective preferences become coordinate data (X,Y), the aggregated heatmap is no longer a suggestion — it becomes a design directive.</span>
+              <div className={`${TOKENS.card} px-6 py-4`}>
+                <span className="text-emerald-700 font-semibold text-base">The Mathematical Mandate — </span>
+                <span className="text-[#334155] text-base">When 50 individual subjective preferences become coordinate data (X,Y), the aggregated heatmap is no longer a suggestion — it becomes a design directive.</span>
               </div>
             </W>
           </div>
@@ -356,117 +391,74 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 08 LOGIC BRIDGE ──────────────────────────────────────── */
+    /* ── 08 DATA PROCESSING WORKFLOW ──────────────────────────── */
     {
       id: 8,
       content: (
         <S>
-          <H label="Translating Preference to Rules" title="The Logic Bridge" sub="IF-THEN Design Logic" />
+          <H label="Application" title="Design Display" sub="Generated Scheme Exploration" />
           <div className="flex-1 min-h-0 pb-6">
-            <W className="h-full flex flex-col gap-3">
-              {/* Logic bridge image — no frame, slightly larger */}
-              <div className="flex-shrink-0 max-h-[38vh] flex items-center justify-center bg-transparent">
-                <img src="/logic-bridge.jpg" alt="Logic Bridge" className="w-full h-full object-contain" />
-              </div>
-              {/* Compact: rule + two cards in one row */}
-              <div className="grid grid-cols-[1fr_1fr] gap-3 flex-shrink-0">
-                <div className="bg-white/5 rounded-xl px-4 py-3 border border-white/10">
-                  <div className="text-[10px] text-gray-500 uppercase tracking-wider mb-1">Design Rule Example</div>
-                  <code className="text-base text-emerald-400 font-mono block leading-snug">
-                    IF (User_Dwell_Density &gt; 0.8)<br />
-                    &nbsp;&nbsp;AND (Solar_Radiation &gt; 400W)<br />
-                    THEN [Add_Canopy_Radius = 6m]
-                  </code>
-                </div>
-                <div className="flex flex-col gap-2">
-                  <div className="p-3 bg-white/5 rounded-xl border border-white/10">
-                    <div className="flex items-center gap-2 mb-1">
-                      <Lightbulb className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                      <h4 className="font-semibold text-sm">Evidence Chain</h4>
-                    </div>
-                    <p className="text-gray-400 text-sm leading-snug">Every dimension linked to a Rule ID backed by the JSON dataset.</p>
-                  </div>
-                  <div className="p-3 bg-white/5 rounded-xl border border-white/10">
-                    <div className="flex items-center gap-2 mb-1">
-                      <BarChart3 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                      <h4 className="font-semibold text-sm">Full Audit Trail</h4>
-                    </div>
-                    <p className="text-gray-400 text-sm leading-snug">Public preference → density map → rule → CAD. Every decision traceable.</p>
-                  </div>
-                </div>
-              </div>
-              <div className="px-4 py-3 bg-emerald-500/8 rounded-xl border border-emerald-500/20 flex-shrink-0">
-                <p className="text-gray-300 text-sm"><strong className="text-white">Result: </strong>The final plan is a mathematically mandated response to 300+ participants' spatial preferences — not a subjective expert design.</p>
-              </div>
+            <W className="h-full flex items-center justify-center max-w-[1540px] px-2 -mt-2">
+              <img src="/display.jpg" alt="Design Display" className="w-full h-full object-contain scale-[1.08]" />
             </W>
           </div>
         </S>
       ),
     },
 
-    /* ── 09 HEATMAP — 2×2 grid, four images + titles only ──────── */
+    /* ── 09 DATA PROCESSING WORKFLOW ──────────────────────────── */
     {
       id: 9,
       content: (
         <S>
-          <H label="Application" title="Heatmap" sub="Expert Intent vs. User Intuition" />
+          <H label="Methodology" title="Data Processing Workflow" sub="How Raw Preferences Become Spatial Outputs" />
           <div className="flex-1 min-h-0 pb-6">
-            <W className="h-full grid grid-cols-2 grid-rows-2 gap-6">
-              {[
-                { src: '/tree-large.png', title: 'Public Performance Analysis — Park (Tree) User Large' },
-                { src: '/tree-medium.png', title: 'Public Performance Analysis — Park (Tree) User Medium' },
-                { src: '/open-plaza-area.png', title: 'Public Performance Analysis — Plaza/Open User circles' },
-                { src: '/playground-area.png', title: 'Public Performance Analysis — Playground User circles' },
-              ].map((img) => (
-                <div key={img.src} className="flex flex-col min-h-0">
-                  <div className="flex-1 min-h-0 flex items-center justify-center bg-transparent">
-                    <img src={img.src} alt="" className="w-full h-full object-contain" />
-                  </div>
-                  <div className="px-2 py-3 text-center flex-shrink-0">
-                    <span className="text-sm text-emerald-400 font-semibold leading-tight">{img.title}</span>
-                  </div>
+            <W className="h-full flex flex-col gap-4">
+              {/* Main workflow diagram */}
+              <div className="flex-shrink-0 max-h-[58vh] flex items-center justify-center bg-transparent">
+                <img src="/logic-bridge.jpg" alt="Data Processing Workflow" className="w-full h-full object-contain" />
+              </div>
+              {/* Concise explanation for presentation speaking flow */}
+              <div className="grid grid-cols-2 gap-4 flex-shrink-0">
+                <div className={`${TOKENS.card} px-5 py-4`}>
+                  <div className="text-[12px] text-emerald-700 font-semibold uppercase tracking-wider mb-1.5">Input to Audit</div>
+                  <p className="text-[#475569] text-[15px] leading-relaxed">
+                    50 user preference sessions are collected as JSON coordinate lists, then audited to remove incomplete
+                    or low-quality entries before aggregation.
+                  </p>
                 </div>
-              ))}
+                <div className={`${TOKENS.card} px-5 py-4`}>
+                  <div className="text-[12px] text-emerald-700 font-semibold uppercase tracking-wider mb-1.5">Aggregation to Plan</div>
+                  <p className="text-[#475569] text-[15px] leading-relaxed">
+                    Grasshopper-based grid processing computes spatial probabilities, generates a consensus heatmap,
+                    and translates statistical outputs into an optimized landscape plan.
+                  </p>
+                </div>
+              </div>
             </W>
           </div>
         </S>
       ),
     },
 
-    /* ── 10 RELATIONSHIP ANALYSIS — same format as Heatmap ─────── */
+    /* ── 10 DATA PROCESSING — single large figure ───────────────── */
     {
       id: 10,
       content: (
         <S>
-          <H label="Application" title="Relationship Analysis" sub="Trade-off & Preference Patterns" />
+          <H label="Application" title="Data Processing Workflow" sub="Node-Based Processing and Data Translation" />
           <div className="flex-1 min-h-0 pb-6">
-            <W className="h-full flex flex-col gap-6">
-              {/* Top row: two images */}
-              <div className="grid grid-cols-2 gap-6 flex-1 min-h-0">
-                <div className="flex flex-col min-h-0">
-                  <div className="flex-1 min-h-0 flex items-center justify-center bg-transparent">
-                    <img src="/playground%20vs%20shurbs.png" alt="" className="w-full h-full object-contain" />
-                  </div>
-                  <div className="px-2 py-3 text-center flex-shrink-0">
-                    <span className="text-sm text-emerald-400 font-semibold leading-tight">Playground vs Shrubs</span>
-                  </div>
+            <W className="h-full flex items-center justify-center max-w-[1540px] px-2 mt-1">
+              <div className="w-full h-full flex items-center gap-2">
+                <div className="w-[110px] flex-shrink-0 h-[82%] flex flex-col justify-between">
+                  {['Fitness', 'Plaza', 'Water', 'Grass', 'Trees'].map((label) => (
+                    <div key={label} className="text-[18px] font-semibold text-emerald-700 text-right pr-0.5">
+                      {label}
+                    </div>
+                  ))}
                 </div>
-                <div className="flex flex-col min-h-0">
-                  <div className="flex-1 min-h-0 flex items-center justify-center bg-transparent">
-                    <img src="/Public%20Trade-off%20Budget%20vs%20Ecology.png" alt="" className="w-full h-full object-contain" />
-                  </div>
-                  <div className="px-2 py-3 text-center flex-shrink-0">
-                    <span className="text-sm text-emerald-400 font-semibold leading-tight">Public Trade-off Budget vs Ecology</span>
-                  </div>
-                </div>
-              </div>
-              {/* Bottom row: one full-width image (longer) */}
-              <div className="flex flex-col flex-1 min-h-0">
-                <div className="flex-1 min-h-0 flex items-center justify-center bg-transparent">
-                  <img src="/Consumer%20psychology.png" alt="" className="w-full h-full object-contain" />
-                </div>
-                <div className="px-2 py-3 text-center flex-shrink-0">
-                  <span className="text-sm text-emerald-400 font-semibold leading-tight">Consumer Psychology</span>
+                <div className="flex-1 h-full flex items-center justify-center">
+                  <img src="/data%20process.jpg" alt="Data Processing Workflow" className="w-full h-full object-contain scale-[1.04]" />
                 </div>
               </div>
             </W>
@@ -475,28 +467,184 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 11 LIMITATIONS ───────────────────────────────────────── */
+    /* ── 11 PROCESS A — GEOMETRIC REFINEMENT ───────────────────── */
     {
       id: 11,
+      content: (
+        <S>
+          <H label="Application" title="Process A — Geometric Refinement & Topological Translation" sub="From Pixelated Consensus to Spatial Coherence" />
+          <div className="flex-1 min-h-0 pb-6">
+            <W className="h-full flex flex-col gap-4 max-w-[1540px] px-2 -mt-[10px]">
+              <div className="flex-shrink-0 h-[62%] flex items-center justify-center">
+                <img src="/ProcessA.jpg" alt="Process A Workflow" className="w-full h-full object-contain scale-[1.03]" />
+              </div>
+              <div className="grid grid-cols-3 gap-4 mt-0">
+                {[
+                  {
+                    title: '01. The Pixelated Consensus',
+                    desc: 'Raw spatial data generated by the optimization algorithm. Programmatic zones are strictly bound to the 5x5m computational grid, resulting in an accurate but rigid and disjointed layout.',
+                  },
+                  {
+                    title: '02. Boundary Extraction',
+                    desc: 'Tracing the threshold between distinct functional zones. The hard edges of the pixels are isolated to form a skeletal vector framework, preparing the data for morphological adjustments.',
+                  },
+                  {
+                    title: '03. Topological Refinement',
+                    desc: 'Designer intervention. Jagged data boundaries are organically dissolved into flowing landscape curves for different area, establishing a coherent figure-ground relationship.',
+                  },
+                ].map((item) => (
+                  <div key={item.title} className={`${TOKENS.card} px-4 py-3`}>
+                    <div className="text-[14px] font-semibold text-emerald-700 mb-1.5">{item.title}</div>
+                    <p className="text-[13px] leading-relaxed text-[#475569]">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── 12 PROCESS B — CONTEXTUAL CORRECTION ──────────────────── */
+    {
+      id: 12,
+      content: (
+        <S>
+          <H label="Application" title="Process B — Contextual Correction & Site Adaptation" sub="Human-Led Calibration of Algorithmic Outputs" />
+          <div className="flex-1 min-h-0 pb-6">
+            <W className="h-full flex flex-col gap-4 max-w-[1540px] px-2 -mt-[10px]">
+              <div className="flex-shrink-0 h-[62%] flex items-center justify-center">
+                <img src="/ProcessB.jpg" alt="Process B Workflow" className="w-full h-full object-contain scale-[1.03]" />
+              </div>
+              <div className="grid grid-cols-3 gap-4 mt-0">
+                {[
+                  {
+                    title: '01. Algorithmic Blind Spots',
+                    desc: "The raw data consensus mechanically allocates water features along the site's periphery. While statistically valid based on user inputs, this placement neglects environmental realities, exposing the proposed water body to adjacent street noise and fragmented edge conditions.",
+                  },
+                  {
+                    title: '02. Contextual Override',
+                    desc: 'Human-led calibration. Edge-adjacent water cells are actively reassigned to mitigate noise exposure and spatial fragmentation. The internal water cluster is simultaneously strengthened to create a consolidated, tranquil core protected from the surrounding urban streetscape.',
+                  },
+                  {
+                    title: '03. Site-Adapted Placement',
+                    desc: 'The refined, context-aware layout. The organic water feature is now strategically anchored in the quiet interior of the park. Buffered by surrounding terrain and vegetation, this layout demonstrates the necessity of integrating civic data with professional site analysis.',
+                  },
+                ].map((item) => (
+                  <div key={item.title} className={`${TOKENS.card} px-4 py-3`}>
+                    <div className="text-[14px] font-semibold text-emerald-700 mb-1.5">{item.title}</div>
+                    <p className="text-[13px] leading-relaxed text-[#475569]">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── 13 PROCESS C1 — READING URBAN CONTEXT ─────────────────── */
+    {
+      id: 13,
+      content: (
+        <S>
+          <H
+            label="Application"
+            title="Process C1 — Reading the Urban Context"
+            sub="Surrounding uses, access conditions, and edge characters around the site."
+          />
+          <div className="flex-1 min-h-0 pb-6">
+            <W className="h-full flex flex-col gap-4 max-w-[1540px] px-2 mt-5">
+              <div className="flex-shrink-0 h-[86%] flex items-center justify-center">
+                <img src="/ProcessC1.jpg" alt="Process C1 Urban Context" className="w-full h-full object-contain scale-[1.1]" />
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── 14 PROCESS C2 — MOVEMENT STRUCTURE & USER PATTERNS ────── */
+    {
+      id: 14,
+      content: (
+        <S>
+          <H
+            label="Application"
+            title="Process C2 — Movement Structure & User Patterns"
+            sub="Pedestrian flows, access points, and activity intensity."
+          />
+          <div className="flex-1 min-h-0 pb-6">
+            <W className="h-full flex flex-col gap-4 max-w-[1540px] px-2 mt-5">
+              <div className="flex-shrink-0 h-[86%] flex items-center justify-center">
+                <img src="/ProcessC2.jpg" alt="Process C2 Movement Structure and User Patterns" className="w-full h-full object-contain scale-[1.1]" />
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── 15 PROCESS C3 — PROGRAMME RESPONSE & FUNCTIONAL ZONING ─ */
+    {
+      id: 15,
+      content: (
+        <S>
+          <H
+            label="Application"
+            title="Process C3 — Programme Response & Functional Zoning"
+            sub="Spatial programmes derived from context, movement, and user patterns."
+          />
+          <div className="flex-1 min-h-0 pb-6">
+            <W className="h-full flex flex-col gap-4 max-w-[1540px] px-2 mt-5">
+              <div className="flex-shrink-0 h-[86%] flex items-center justify-center">
+                <img src="/ProcessC3.jpg" alt="Process C3 Programme Response and Functional Zoning" className="w-full h-full object-contain scale-[1.1]" />
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── 16 MASTER PLAN ───────────────────────────────────────── */
+    {
+      id: 16,
+      content: (
+        <S>
+          <H label="Application" title="Master Plan" />
+          <div className="flex-1 min-h-0 pb-6">
+            <W className="h-full flex flex-col gap-4 max-w-[1580px] px-1 mt-6">
+              <div className="flex-shrink-0 h-[90%] flex items-center justify-center">
+                <img src="/Master%20plan.png" alt="Master Plan" className="w-full h-full object-contain scale-[1.16]" />
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── 17 LIMITATIONS ───────────────────────────────────────── */
+    {
+      id: 17,
       content: (
         <S>
           <H label="Honest Assessment" title="Limitations & Mitigation" sub="Addressing Methodological Challenges" />
           <div className="flex-1 min-h-0 pb-6 -mt-1">
             <W className="h-full flex flex-col justify-center gap-4">
               {[
-                { tag: 'Sampling Bias', problem: 'Online tools may exclude elderly users and those without reliable digital access, skewing the dataset toward a younger, tech-literate demographic.', solution: 'Deploy physical tablets on-site at Hong Lim Park to capture in-person participants alongside the digital cohort.' },
+                { tag: 'Participation Fatigue', problem: 'When interaction steps are too long or cognitively heavy, participants lose patience and willingness to complete the full design session, reducing both sample size and data quality.', solution: 'Introduce a tiered workflow: a 3-minute quick mode for broad participation and an advanced mode for detailed inputs. Add progress indicators, autosave, and lightweight interaction guidance to reduce drop-off.' },
                 { tag: 'Nonsensical Inputs', problem: 'Participants may place assets randomly without genuine spatial intent, generating noise that distorts the aggregated heatmap.', solution: 'AI-assisted outlier detection filters sessions that deviate significantly from spatial logic before aggregation.' },
-                { tag: 'Technical Logic Constraints', problem: 'IF-THEN rules may inadvertently suppress creative or unconventional design solutions outside the predefined logic space.', solution: 'Future versions will include a "Free Draw" mode alongside the structured IF-THEN workflow.' },
+                { tag: 'Probability Grid Limits', problem: 'The current probability-per-cell model captures spatial preference density well, but it can over-emphasize local hotspots and under-represent sequential spatial experience, edge continuity, and cross-zone relationships.', solution: 'Upgrade from single-cell probability to multi-factor spatial inference: incorporate adjacency penalties, path-network weights, and context-aware smoothing. Then validate outputs with post-optimization expert calibration loops.' },
               ].map((item, idx) => (
                 <div key={idx} className="grid grid-cols-[1fr_40px_1fr] gap-4 items-center">
-                  <div className="p-5 bg-red-500/5 rounded-xl border border-red-500/15">
-                    <div className="text-xs font-bold text-red-400 uppercase tracking-wider mb-2">{item.tag}</div>
-                    <p className="text-gray-400 text-base md:text-lg leading-relaxed">{item.problem}</p>
+                  <div className="p-5 bg-[#fff5f5] rounded-xl border border-[#efc6c6] shadow-[0_8px_24px_rgba(56,48,37,0.08)]">
+                    <div className="text-xs font-bold text-[#b45353] uppercase tracking-wider mb-2">{item.tag}</div>
+                    <p className="text-[#475569] text-base md:text-lg leading-relaxed">{item.problem}</p>
                   </div>
-                  <div className="flex justify-center"><ArrowRight className="w-5 h-5 text-gray-600" /></div>
-                  <div className="p-5 bg-emerald-500/5 rounded-xl border border-emerald-500/15">
-                    <div className="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-2">Mitigation</div>
-                    <p className="text-gray-300 text-base md:text-lg leading-relaxed">{item.solution}</p>
+                  <div className="flex justify-center"><ArrowRight className="w-5 h-5 text-[#94a3b8]" /></div>
+                  <div className="p-5 bg-emerald-100/60 rounded-xl border border-emerald-200 shadow-[0_8px_24px_rgba(56,48,37,0.08)]">
+                    <div className="text-xs font-bold text-emerald-700 uppercase tracking-wider mb-2">Mitigation</div>
+                    <p className="text-[#334155] text-base md:text-lg leading-relaxed">{item.solution}</p>
                   </div>
                 </div>
               ))}
@@ -506,94 +654,48 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 12 FUTURE VISION ─────────────────────────────────────── */
+    /* ── 18 FUTURE VISION ─────────────────────────────────────── */
     {
-      id: 12,
-      content: (
-        <S noFaintBg>
-          {/* Singapore green map — darkened to match theme */}
-          <div className="absolute inset-0 z-0">
-            <img
-              src="/Singapore-green.png"
-              alt="Singapore Green Network"
-              className="w-full h-full object-cover"
-              style={{ filter: 'brightness(0.12) saturate(2) hue-rotate(80deg)', mixBlendMode: 'normal' }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/80 via-[#0a0a0a]/60 to-[#0a0a0a]/85" />
-          </div>
-          <div className="relative z-10 flex flex-col h-full">
-            <H label="Future Development" title="Scaling Beyond the Pilot" sub="From Hong Lim Park to the Singapore Green Network" />
-            <div className="flex-1 min-h-0 pb-6 overflow-auto">
-              <W className="py-2 flex flex-col gap-5">
-                <div className="bg-white/5 rounded-2xl px-8 py-5 border border-white/10 text-center flex-shrink-0">
-                  <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-                    Hong Lim Park is just the <span className="text-emerald-400 font-semibold">Pilot Study</span>.
-                    The vision: a city where <span className="text-emerald-400 font-semibold">6 million planners</span> are
-                    continuously engaged in redesigning Fort Canning Park, Marina Bay, East Coast Park,
-                    and the entire Singapore Green Network.
-                  </p>
-                </div>
-                <div className="grid grid-cols-2 gap-6 flex-shrink-0">
-                  <div className="p-6 bg-gradient-to-br from-emerald-500/10 to-transparent rounded-2xl border border-emerald-500/20">
-                    <h4 className="text-xl font-semibold mb-4 text-emerald-400">Public Version</h4>
-                    <ul className="space-y-3 text-gray-300">
-                      {['Intuitive human-led layouts', 'Community engagement at scale', 'Web-based, zero-barrier access', 'Real-time budget feedback'].map((t) => (
-                        <li key={t} className="flex items-start gap-3 text-base"><div className="w-2.5 h-2.5 bg-emerald-400 rounded-full mt-1.5 flex-shrink-0" />{t}</li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="p-6 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-2xl border border-cyan-500/20">
-                    <h4 className="text-xl font-semibold mb-4 text-cyan-400">Pro Version</h4>
-                    <ul className="space-y-3 text-gray-300">
-                      {['GNPR & LRR real-time compliance tracking', 'Species growth simulations', 'Automated cost estimation & LCCA', 'Live BIM / Rhino-Inside connection'].map((t) => (
-                        <li key={t} className="flex items-start gap-3 text-base"><div className="w-2.5 h-2.5 bg-cyan-400 rounded-full mt-1.5 flex-shrink-0" />{t}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                {/* Two images as per user's blue boxes: 1 = Landscape Pro, 2 = Landscape Pro2 */}
-                <div className="grid grid-cols-2 gap-6 flex-shrink-0 mt-2">
-                  <div className="flex items-center justify-center min-h-[24vh] bg-transparent">
-                    <img src="/Landscape-Pro.jpg" alt="Landscape Pro" className="max-w-full max-h-full object-contain" />
-                  </div>
-                  <div className="flex items-center justify-center min-h-[24vh] bg-transparent">
-                    <img src="/Landscape-Pro2.jpg" alt="Landscape Pro 2" className="max-w-full max-h-full object-contain" />
-                  </div>
-                </div>
-              </W>
-            </div>
-          </div>
-        </S>
-      ),
-    },
-
-    /* ── 13 EXPERT EXTENSION ──────────────────────────────────── */
-    {
-      id: 13,
+      id: 18,
       content: (
         <S>
-          <H label="Next Steps" title="The Expert Extension" sub="Upgrading from Prototype to Professional Engine" />
+          <H label="Future Development" title="Scaling Beyond the Pilot" sub="From Hong Lim Park to Multi-Site Urban Collaboration" />
           <div className="flex-1 min-h-0 pb-6 overflow-auto">
-            <W className="pt-4 pb-4 flex flex-col gap-6">
-              <p className="text-center text-gray-400 text-lg">Moving from a preference prototype to a full-grade engine for collaborative urbanism.</p>
-              <div className="grid grid-cols-4 gap-5 flex-shrink-0">
-                {[
-                  { icon: '🌿', area: 'Botany', feature: 'Species-specific growth metrics & biodiversity selection integrated into every asset placement decision.' },
-                  { icon: '⚖️', area: 'Policy', feature: 'GNPR & LRR real-time compliance tracking. Every public submission automatically verified against regulations.' },
-                  { icon: '📊', area: 'Economics', feature: 'Automated cost estimation and full lifecycle maintenance cost analysis (LCCA) per design session.' },
-                  { icon: '🔗', area: 'Technical', feature: 'Direct live connection to BIM / Rhino-Inside. Closes the loop from public preference to construction docs.' },
-                ].map((item, idx) => (
-                  <div key={idx} className="p-6 bg-white/5 rounded-xl border border-white/10 hover:border-emerald-500/30 transition-colors">
-                    <div className="text-4xl mb-4">{item.icon}</div>
-                    <h4 className="font-semibold text-emerald-400 mb-3 text-lg">{item.area}</h4>
-                    <p className="text-gray-400 text-base md:text-lg leading-relaxed">{item.feature}</p>
-                  </div>
-                ))}
+            <W className="py-2 flex flex-col gap-5">
+              <div className={`${TOKENS.card} px-8 py-5 text-center flex-shrink-0`}>
+                <p className="text-lg md:text-xl text-[#334155] leading-relaxed">
+                  Hong Lim Park is just the <span className="text-emerald-700 font-semibold">Pilot Study</span>.
+                  The vision: a city where <span className="text-emerald-700 font-semibold">6 million planners</span> are
+                  continuously engaged in redesigning Fort Canning Park, Marina Bay, East Coast Park,
+                  and other public landscapes.
+                </p>
               </div>
-              <div className="grid grid-cols-4 gap-px bg-white/10 rounded-xl overflow-hidden border border-white/10 flex-shrink-0">
-                {['Current: Public Prototype', 'v2: Expert Modules', 'v3: City-Scale Network', 'v4: Live BIM Pipeline'].map((phase, i) => (
-                  <div key={i} className={`px-5 py-4 text-center text-sm font-semibold ${i === 0 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-[#141414] text-gray-500'}`}>{phase}</div>
-                ))}
+              <div className="grid grid-cols-2 gap-6 flex-shrink-0">
+                <div className="p-6 bg-gradient-to-br from-emerald-100/75 to-transparent rounded-2xl border border-emerald-200 shadow-[0_8px_24px_rgba(56,48,37,0.08)]">
+                  <h4 className="text-xl font-semibold mb-4 text-emerald-700">Public Version</h4>
+                  <ul className="space-y-3 text-[#334155]">
+                    {['Intuitive human-led layouts', 'Community engagement at scale', 'Web-based, zero-barrier access', 'Real-time budget feedback'].map((t) => (
+                      <li key={t} className="flex items-start gap-3 text-base"><div className="w-2.5 h-2.5 bg-emerald-700 rounded-full mt-1.5 flex-shrink-0" />{t}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="p-6 bg-gradient-to-br from-sky-100/75 to-transparent rounded-2xl border border-sky-200 shadow-[0_8px_24px_rgba(56,48,37,0.08)]">
+                  <h4 className="text-xl font-semibold mb-4 text-sky-700">Pro Version</h4>
+                  <ul className="space-y-3 text-[#334155]">
+                    {['GNPR & LRR real-time compliance tracking', 'Species growth simulations', 'Automated cost estimation & LCCA', 'Live BIM / Rhino-Inside connection'].map((t) => (
+                      <li key={t} className="flex items-start gap-3 text-base"><div className="w-2.5 h-2.5 bg-sky-700 rounded-full mt-1.5 flex-shrink-0" />{t}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              {/* Two images as per user's blue boxes: 1 = Landscape Pro, 2 = Landscape Pro2 */}
+              <div className="grid grid-cols-2 gap-6 flex-shrink-0 mt-2">
+                <div className="flex items-center justify-center min-h-[24vh] bg-transparent">
+                  <img src="/Landscape-Pro.jpg" alt="Landscape Pro" className="max-w-full max-h-full object-contain" />
+                </div>
+                <div className="flex items-center justify-center min-h-[24vh] bg-transparent">
+                  <img src="/Landscape-Pro2.jpg" alt="Landscape Pro 2" className="max-w-full max-h-full object-contain" />
+                </div>
               </div>
             </W>
           </div>
@@ -601,36 +703,41 @@ export default function Presentation() {
       ),
     },
 
-    /* ── 14 CONCLUSION ────────────────────────────────────────── */
+    /* ── 19 CONCLUSION ────────────────────────────────────────── */
     {
-      id: 14,
+      id: 19,
       content: (
         <S>
-          <div className="flex flex-col h-full items-center justify-center py-8">
-            <W className="flex flex-col items-center gap-6">
+          <div className="flex flex-col h-full items-center justify-center py-6">
+            <W className="flex flex-col items-center gap-7 max-w-[1420px]">
               <div className="text-center">
-                <div className="text-[10px] font-bold tracking-[0.22em] text-emerald-400 uppercase mb-2">Conclusion</div>
-                <h2 className="text-4xl md:text-5xl font-bold leading-tight">Towards a Collaborative Dialogue</h2>
-                <p className="mt-2 text-gray-400 max-w-xl mx-auto text-sm leading-relaxed">Transforming landscape architecture from an opaque expert process into an auditable, human-led, and collaborative workflow.</p>
+                <div className="text-[11px] font-bold tracking-[0.24em] text-emerald-700 uppercase mb-2.5">Conclusion</div>
+                <h2 className="text-5xl md:text-6xl font-bold leading-tight">Towards a Collaborative Dialogue</h2>
+                <p className="mt-3 text-[#475569] max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
+                  Transforming landscape architecture from an opaque expert process into an auditable,
+                  human-led, and collaborative workflow.
+                </p>
               </div>
-              <div className="grid grid-cols-3 gap-5 w-full">
+              <div className="grid grid-cols-3 gap-6 w-full">
                 {[
                   { icon: <Users className="w-7 h-7 text-emerald-400" />, title: 'Human', desc: 'Human-led choices at every step of the design process' },
                   { icon: <Lightbulb className="w-7 h-7 text-emerald-400" />, title: 'Democratic', desc: "Traceable public agency — every participant's input is counted" },
                   { icon: <Database className="w-7 h-7 text-emerald-400" />, title: 'Computable', desc: 'Seamless export to professional CAD/BIM workflows' },
                 ].map((item, idx) => (
-                  <div key={idx} className="p-7 bg-white/5 rounded-2xl border border-white/10 hover:border-emerald-500/25 transition-colors text-center">
-                    <div className="w-14 h-14 rounded-full bg-emerald-500/10 flex items-center justify-center mx-auto mb-3">{item.icon}</div>
-                    <h4 className="text-lg font-semibold mb-1.5">{item.title}</h4>
-                    <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+                  <div key={idx} className={`${TOKENS.card} p-8 transition-colors text-center`}>
+                    <div className="w-16 h-16 rounded-full bg-emerald-100/80 flex items-center justify-center mx-auto mb-4">
+                      {item.icon}
+                    </div>
+                    <h4 className="text-2xl font-semibold mb-2">{item.title}</h4>
+                    <p className="text-[#475569] text-base md:text-lg leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
               </div>
-              <div className="flex gap-4">
-                <Button size="lg" onClick={() => window.open('https://landscape-configurator.vercel.app/', '_blank')} className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-5 text-base rounded-xl">
+              <div className="flex gap-5 pt-1">
+                <Button size="lg" onClick={() => window.open('https://landscape-configurator.vercel.app/', '_blank')} className="bg-emerald-500 hover:bg-emerald-600 text-white px-10 py-6 text-lg rounded-xl">
                   <MapPin className="mr-2 w-5 h-5" />Try Landscape Pro
                 </Button>
-                <Button size="lg" onClick={() => navigate('/')} className="bg-white/10 hover:bg-white/20 text-white border border-white/30 px-8 py-5 text-base rounded-xl">
+                <Button size="lg" onClick={() => navigate('/')} className="bg-[#f4eee3] hover:bg-[#ede4d1] text-[#1f2937] border border-[#cfc6b5] px-10 py-6 text-lg rounded-xl">
                   <Home className="mr-2 w-5 h-5" />Back to Home
                 </Button>
               </div>
@@ -677,17 +784,17 @@ export default function Presentation() {
 
   return (
     <div
-      className="h-screen bg-[#0a0a0a] text-white flex flex-col overflow-hidden select-none"
+      className="h-screen bg-[#f6f1e7] text-[#1f2937] flex flex-col overflow-hidden select-none [&_.text-white]:text-[#1f2937] [&_.text-gray-300]:text-[#334155] [&_.text-gray-400]:text-[#475569] [&_.text-gray-500]:text-[#64748b] [&_.text-gray-600]:text-[#94a3b8] [&_.text-emerald-400]:text-emerald-700 [&_.text-emerald-400\\/70]:text-emerald-700/80"
       style={{ WebkitUserSelect: 'none', userSelect: 'none', cursor: cursorStyle }}
       onClick={handleClick}
     >
-      <nav className="flex-shrink-0 bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/10 z-50">
+      <nav className="flex-shrink-0 bg-[#f3ede0]/95 backdrop-blur-md border-b border-[#d8d0c1] z-50">
         <div className="px-6 py-3 flex items-center justify-between">
-          <Button variant="ghost" size="sm" onClick={(e) => { e.stopPropagation(); navigate('/'); }} className="text-gray-400 hover:text-white h-8">
+          <Button variant="ghost" size="sm" onClick={(e) => { e.stopPropagation(); navigate('/'); }} className="text-[#64748b] hover:text-[#1f2937] h-8">
             <Home className="w-4 h-4 mr-2" />Home
           </Button>
-          <span className="text-sm text-gray-500 font-medium">{currentSlide + 1} / {slides.length}</span>
-          <Button size="sm" onClick={(e) => { e.stopPropagation(); window.open('https://landscape-configurator.vercel.app/', '_blank'); }} className="bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 border border-emerald-500/40 h-8">
+          <span className="text-sm text-[#64748b] font-medium">{currentSlide + 1} / {slides.length}</span>
+          <Button size="sm" onClick={(e) => { e.stopPropagation(); window.open('https://landscape-configurator.vercel.app/', '_blank'); }} className="bg-emerald-100/70 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 h-8">
             <MapPin className="w-3.5 h-3.5 mr-1.5" />Landscape Pro
           </Button>
         </div>
@@ -697,13 +804,13 @@ export default function Presentation() {
         {slides[currentSlide].content}
       </div>
 
-      <div className="flex-shrink-0 bg-[#0a0a0a]/90 backdrop-blur-md border-t border-white/10 z-50">
+      <div className="flex-shrink-0 bg-[#f3ede0]/95 backdrop-blur-md border-t border-[#d8d0c1] z-50">
         <div className="px-6 py-2.5">
           <div className="flex justify-between mb-1.5">
-            <span className="text-xs text-gray-600">← / → click screen edges · arrow keys</span>
-            <span className="text-xs text-gray-600">ESC to return home</span>
+            <span className="text-xs text-[#64748b]">← / → click screen edges · arrow keys</span>
+            <span className="text-xs text-[#64748b]">ESC to return home</span>
           </div>
-          <div className="h-0.5 bg-white/10 rounded-full overflow-hidden">
+          <div className="h-0.5 bg-[#d8d0c1] rounded-full overflow-hidden">
             <div className="h-full bg-emerald-500 transition-all duration-300" style={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }} />
           </div>
         </div>

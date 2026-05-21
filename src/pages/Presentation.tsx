@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { ChevronRight, Home, MapPin, Users, Database, Lightbulb, ArrowRight } from 'lucide-react';
+import { ChevronRight, Home, MapPin, Users, Database, Lightbulb, ArrowRight, GitBranch, Target, XCircle, CheckCircle2, Workflow, Sparkles, MessageCircle, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 
@@ -86,44 +86,59 @@ export default function Presentation() {
 
   const slides: Slide[] = [
 
-    /* ── SCAU 01 封面 ───────────────────────────────────────── */
+    /* ── SCAU 01 封面（版式对齐毕设封面：上大下松） ─────────────── */
     {
       id: 101,
       content: (
         <S>
-          <div className="relative flex flex-col items-center justify-center h-full text-center px-12">
+          <div className="relative flex flex-col h-full text-center">
             <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-[22%] left-[8%] text-[12px] tracking-[0.18em] text-emerald-700/25">跨界求职</div>
-              <div className="absolute top-[28%] right-[9%] text-[12px] tracking-[0.18em] text-emerald-700/25">设计课</div>
-              <div className="absolute bottom-[27%] left-[10%] text-[12px] tracking-[0.18em] text-emerald-700/25">毕设</div>
-              <div className="absolute bottom-[22%] right-[8%] text-[12px] tracking-[0.18em] text-emerald-700/25">数字前沿</div>
+              <div className="absolute top-[22%] left-[8%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">跨界求职</div>
+              <div className="absolute top-[28%] right-[9%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">设计课</div>
+              <div className="absolute bottom-[27%] left-[10%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">毕设</div>
+              <div className="absolute bottom-[22%] right-[8%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">数字前沿</div>
               <div className="absolute left-[7%] top-[30%] bottom-[30%] w-px bg-gradient-to-b from-transparent via-emerald-700/18 to-transparent" />
               <div className="absolute right-[7%] top-[30%] bottom-[30%] w-px bg-gradient-to-b from-transparent via-emerald-700/18 to-transparent" />
             </div>
-            <div
-              className="inline-flex items-center gap-2 px-5 py-2 bg-emerald-100/80 border border-emerald-200 rounded-full text-emerald-700 text-sm font-semibold tracking-widest mb-7"
-              style={{ fontFamily: TOKENS.fontScript }}
-            >
-              <span className="w-2 h-2 bg-emerald-700 rounded-full animate-pulse" />
-              华南农业大学 · 园林专业分享会
-            </div>
-            <h1 className="text-5xl md:text-7xl leading-[1.05] mb-4" style={{ fontFamily: TOKENS.fontDisplay }}>
-              <span className="text-[#243247] block tracking-tight">不设限的风景园林</span>
-              <span className="text-emerald-700 block tracking-tight text-4xl md:text-6xl mt-3">从数字前沿到多元职场</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-[#475569] mb-9 max-w-3xl" style={{ fontFamily: TOKENS.fontBody }}>
-              写给大二的你：在 NUS 做毕设与跨界求职的一些感悟
-            </p>
-            <div className="flex items-center gap-10 text-base">
-              <div className="text-center">
-                <div className="text-emerald-700 font-semibold text-sm tracking-wider mb-1.5">演讲人</div>
-                <div className="text-[#1f2937] font-medium text-xl">温广源</div>
+
+            {/* 主视觉区：偏上居中，留白更足 */}
+            <div className="flex-1 flex flex-col items-center justify-center px-12 pt-4 pb-6 min-h-0">
+              <div
+                className="inline-flex items-center gap-2 px-5 py-2 bg-emerald-100/80 border border-emerald-200 rounded-full text-emerald-700 text-sm font-semibold tracking-widest uppercase mb-8"
+                style={{ fontFamily: TOKENS.fontScript }}
+              >
+                <span className="w-2 h-2 bg-emerald-700 rounded-full animate-pulse" />
+                华南农业大学 · 园林专业分享会
               </div>
-              <div className="w-px h-12 bg-[#d8d0c1]" />
+              <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[0.95] mb-5 w-full max-w-[1400px]" style={{ fontFamily: TOKENS.fontDisplay }}>
+                <span className="text-[#243247] block tracking-tight">不设限的风景园林</span>
+                <span className="text-emerald-700 block tracking-tight">从数字前沿到多元职场</span>
+              </h1>
+              <p className="text-xl md:text-2xl lg:text-[1.65rem] text-[#475569] mb-10 max-w-4xl leading-relaxed" style={{ fontFamily: TOKENS.fontBody }}>
+                写给大二的你：在 NUS 做毕设与跨界求职的一些感悟
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {['跨界求职', '设计课', '毕设', '数字前沿'].map((t) => (
+                  <span key={t} className="px-4 py-2 bg-[#f4eee3] rounded-full text-[#475569] text-base md:text-lg border border-[#d8d0c1]" style={{ fontFamily: TOKENS.fontBody }}>{t}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* 底部信息：与毕设封面同结构三栏 */}
+            <div className="flex-shrink-0 flex items-center justify-center gap-10 md:gap-14 pb-10 md:pb-12 px-12 text-base md:text-lg">
               <div className="text-center">
-                <div className="text-[#64748b] text-sm mb-1.5">背景</div>
-                <div className="text-[#1f2937] text-lg font-medium">2020 级华农园林校友</div>
-                <div className="text-[#475569] text-lg">NUS 景观建筑 · MLA</div>
+                <div className="text-emerald-700 font-semibold text-sm uppercase tracking-wider mb-1.5">演讲人</div>
+                <div className="text-[#1f2937] font-medium text-xl md:text-2xl">温广源</div>
+              </div>
+              <div className="w-px h-14 bg-[#d8d0c1]" />
+              <div className="text-center">
+                <div className="text-emerald-700 font-semibold text-sm uppercase tracking-wider mb-1.5">本科</div>
+                <div className="text-[#1f2937] font-medium text-lg md:text-xl">2020 级华农园林</div>
+              </div>
+              <div className="w-px h-14 bg-[#d8d0c1]" />
+              <div className="text-center">
+                <div className="text-[#64748b] text-sm mb-1.5">在读</div>
+                <div className="text-[#1f2937] text-lg md:text-xl font-medium">NUS · MLA</div>
               </div>
             </div>
           </div>
@@ -137,29 +152,45 @@ export default function Presentation() {
       content: (
         <S>
           <H label="The Situation" title="打破「专业壁垒」的迷思" sub="用真实的 Offer 矩阵，缓解专业焦虑" />
-          <div className="flex-1 min-h-0 pb-6 flex flex-col">
-            <W className="flex-shrink-0 mb-4">
-              <div className={`${TOKENS.card} p-5`}>
-                <div className="text-sm font-bold text-emerald-700 uppercase tracking-wider mb-3">求职战绩（节选）</div>
-                <div className="flex flex-wrap gap-2 justify-center">
+          <div className="flex-1 min-h-0 pb-4 flex flex-col justify-start">
+            <W className="flex flex-col gap-3.5">
+              {/* 求职战绩 */}
+              <div className="flex-shrink-0">
+                <div className="text-base md:text-lg font-bold text-emerald-700 uppercase tracking-wider mb-3">求职战绩（节选）</div>
+                <div className="flex flex-wrap gap-2.5 items-center">
                   {scauOffers.map((o) => (
-                    <span key={o} className="text-sm px-3 py-1.5 bg-[#f7f2e9] rounded-full text-[#334155] border border-[#d8d0c1]">{o}</span>
+                    <span
+                      key={o}
+                      className="text-base md:text-[17px] px-4 py-2 bg-white/95 rounded-full text-[#334155] border border-[#e2e8f0] shadow-[0_2px_8px_rgba(56,48,37,0.06)] font-medium"
+                    >
+                      {o}
+                    </span>
                   ))}
+                  <span className="text-2xl md:text-3xl text-[#94a3b8] font-light px-1 leading-none select-none" aria-hidden>……</span>
+                  <span className="text-base md:text-[17px] px-5 py-2 bg-emerald-100/90 rounded-full text-emerald-800 border border-emerald-200 font-bold shadow-[0_2px_8px_rgba(16,185,129,0.12)]">
+                    10+ Offer
+                  </span>
                 </div>
               </div>
-            </W>
-            <W className="flex-1 min-h-0 grid grid-cols-[1fr_1fr] gap-8 items-center">
-              <div className="space-y-4">
-                <p className="text-[#334155] text-[18px] leading-relaxed">
+
+              {/* JD 截图：适中留白，不 flex-1 撑满 */}
+              <div className="flex-shrink-0 flex justify-center py-3 my-2">
+                <img
+                  src="/mars-jd.png"
+                  alt="玛氏 JD 截图"
+                  className="w-full max-h-[46vh] object-contain"
+                />
+              </div>
+
+              {/* 正文 */}
+              <div className="flex-shrink-0 mt-3 pt-3 space-y-3 border-t border-[#d8d0c1]/60">
+                <p className="text-[#334155] text-lg md:text-xl leading-relaxed font-medium">
                   一个<span className="text-emerald-700 font-semibold">纯风景园林本硕生</span>，为什么能拿到这些看似毫不相关的岗位？
                 </p>
-                <p className="text-[#475569] text-[16px] leading-relaxed">
+                <p className="text-[#475569] text-base md:text-lg leading-relaxed">
                   承认专业差异的存在，但在真实商业环境中，绝大多数岗位（除少数硬核技术岗）更看重
                   <span className="font-semibold text-[#1f2937]">综合素质</span>，而非单一专业标签。
                 </p>
-              </div>
-              <div className="min-h-0 flex items-center justify-center">
-                <img src="/mars-jd.png" alt="玛氏 JD" className="w-full max-h-[46vh] object-contain rounded-lg border border-[#d8d0c1] shadow-[0_6px_16px_rgba(56,48,37,0.09)]" />
               </div>
             </W>
           </div>
@@ -167,48 +198,86 @@ export default function Presentation() {
       ),
     },
 
-    /* ── SCAU 03 深度拆解 ─────────────────────────────────────── */
+    /* ── SCAU 03 深度拆解（核心能力 · 满版纵向） ───────────────── */
     {
       id: 103,
       content: (
         <S>
           <H label="The Analysis" title="企业到底在买单什么？" sub="玛氏 AC 面核心标准 · 商业词汇与园林语境" />
-          <div className="flex-1 min-h-0 pb-6">
-            <W className="h-full grid lg:grid-cols-2 gap-6 items-start">
-              <div className="space-y-3">
-                {[
-                  { t: '学习敏锐度 Learning Agility', d: '快速掌握新场地、规范与工具' },
-                  { t: '全局视野与系统性解决问题', d: '从概念草图到扩初落地的全流程' },
-                  { t: '商业洞察力', d: '场地调研、痛点挖掘与方案说服力' },
-                ].map((item, i) => (
-                  <div key={i} className="py-3 px-4 bg-[#fffdf7] rounded-xl border border-[#cfc6b5] shadow-[0_6px_16px_rgba(56,48,37,0.09)]">
-                    <div className="w-2.5 h-2.5 bg-emerald-700 rounded-full mb-2" />
-                    <h4 className="font-semibold text-[#1f2937] text-[17px] mb-1">{item.t}</h4>
-                    <p className="text-[#475569] text-[15px] leading-snug">{item.d}</p>
-                  </div>
-                ))}
-                <p className="text-[#64748b] text-[15px] leading-relaxed pt-1">
-                  面试官不考植物学，但会深挖你面对复杂系统时的拆解能力——设计课训练的逻辑推演，正是商业世界渴求的底层资产。
-                </p>
-              </div>
-              <div className={`${TOKENS.card} overflow-hidden`}>
-                <div className="text-[13px] text-emerald-700 font-semibold uppercase tracking-wider border-b border-[#d8d0c1] px-4 py-3 bg-[#f4eee3]">
-                  概念转译 · 商业 → 园林
+          <div className="flex-1 min-h-0 pb-4 flex flex-col justify-start">
+            <W className="flex flex-col gap-3.5">
+              <p className="text-base md:text-lg text-[#64748b] text-center leading-relaxed">
+                头部企业选人，看的不是「会不会认植物」，而是<span className="text-emerald-700 font-semibold">可迁移的核心能力</span>——设计课里练的逻辑，正是商业世界要的底层资产。
+              </p>
+
+              {/* 三大核心能力 · 横排满宽 */}
+              <div>
+                <div className="text-base md:text-lg font-bold text-emerald-700 uppercase tracking-wider mb-3">玛氏 AC · 三大核心能力</div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {[
+                    { Icon: Lightbulb, title: '学习敏锐度', en: 'Learning Agility', d: '快速掌握新场地类型、规范与软件工具', hint: '学得快 · 用得活' },
+                    { Icon: GitBranch, title: '系统性解决问题', en: 'Problem Solving', d: '从概念草图到扩初落地的全流程把控', hint: '拆得清 · 落得稳' },
+                    { Icon: Target, title: '商业洞察力', en: 'Business Insight', d: '场地调研、痛点挖掘与方案说服力', hint: '看得准 · 说得通' },
+                  ].map((item) => (
+                    <div
+                      key={item.en}
+                      className="py-4 px-5 bg-white/95 rounded-2xl border border-[#e2e8f0] shadow-[0_4px_16px_rgba(56,48,37,0.08)] flex flex-col min-h-[148px]"
+                    >
+                      <div className="flex items-start gap-3 mb-3">
+                        <div className="w-11 h-11 rounded-xl bg-emerald-100/80 border border-emerald-200 flex items-center justify-center flex-shrink-0">
+                          <item.Icon className="w-5 h-5 text-emerald-700" />
+                        </div>
+                        <div className="min-w-0">
+                          <h4 className="font-semibold text-[#1f2937] text-lg leading-tight">{item.title}</h4>
+                          <div className="text-xs text-emerald-700/90 font-medium tracking-wide mt-0.5">{item.en}</div>
+                        </div>
+                      </div>
+                      <p className="text-[#475569] text-base leading-relaxed flex-1">{item.d}</p>
+                      <span className="mt-3 inline-block text-sm text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100 w-fit">{item.hint}</span>
+                    </div>
+                  ))}
                 </div>
-                <table className="w-full text-[15px]">
-                  <tbody>
-                    {[
-                      ['商业 / 需求分析', '场地调研与痛点挖掘'],
-                      ['项目管理与统筹', '概念草图到扩初设计的落地'],
-                      ['跨部门沟通', '与甲方、施工方、公众的协调'],
-                    ].map((row, i) => (
-                      <tr key={i} className="border-b border-[#e5dece]">
-                        <td className="py-3 px-4 text-[#334155] font-medium">{row[0]}</td>
-                        <td className="py-3 px-4 text-[#475569]">{row[1]}</td>
+              </div>
+
+              {/* 概念转译 · 全宽表格 */}
+              <div>
+                <div className="text-base md:text-lg font-bold text-emerald-700 uppercase tracking-wider mb-3">概念转译 · 商业词汇 → 园林语境</div>
+                <div className={`${TOKENS.card} overflow-hidden`}>
+                  <table className="w-full text-base md:text-[17px]">
+                    <thead>
+                      <tr className="bg-[#f4eee3] border-b border-[#d8d0c1]">
+                        <th className="text-left py-3.5 px-5 text-emerald-700 font-bold w-[42%]">商业侧能力</th>
+                        <th className="w-10" aria-hidden />
+                        <th className="text-left py-3.5 px-5 text-emerald-700 font-bold">园林课 / 设计课对应</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {[
+                        ['商业 / 需求分析', '场地调研与痛点挖掘'],
+                        ['项目管理与统筹', '从概念草图到扩初设计的落地把控'],
+                        ['跨部门沟通', '与甲方、施工方、公众的汇报与协调'],
+                      ].map((row, i) => (
+                        <tr key={i} className="border-b border-[#e5dece] last:border-0 bg-white/80">
+                          <td className="py-4 px-5 text-[#334155] font-semibold">{row[0]}</td>
+                          <td className="py-4 text-center text-emerald-600/70">
+                            <ArrowRight className="w-5 h-5 inline-block" />
+                          </td>
+                          <td className="py-4 px-5 text-[#475569]">{row[1]}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* 底栏讲述重点 */}
+              <div className="mt-1 pt-3 space-y-2 border-t border-[#d8d0c1]/60">
+                <p className="text-[#334155] text-lg md:text-xl leading-relaxed font-medium">
+                  面试官<span className="text-emerald-700 font-semibold">不考植物学</span>，但会通过简历深挖：你面对复杂系统时，能不能拆解、推演、落地？
+                </p>
+                <p className="text-[#475569] text-base md:text-lg leading-relaxed">
+                  设计课里的逻辑推演与方案论证，就是商业岗位要的「综合素质」——专业标签之外，真正被买单的是这套思维能力。
+                </p>
               </div>
             </W>
           </div>
@@ -216,41 +285,82 @@ export default function Presentation() {
       ),
     },
 
-    /* ── SCAU 04 设计课 ───────────────────────────────────────── */
+    /* ── SCAU 04 设计课（简历 + Do/Don't · 满版） ─────────────── */
     {
       id: 104,
       content: (
         <S>
-          <H label="The Action" title="为什么必须重视眼前的设计课？" sub="跨界能力，建立在对本职任务的极高标准之上" />
-          <div className="flex-1 min-h-0 pb-6">
-            <W className="h-full grid grid-cols-[1fr_1fr] gap-8 items-stretch">
-              <div className="flex flex-col min-h-0 gap-3">
-                <div className="text-sm font-bold text-emerald-700 uppercase tracking-wider">学术积累</div>
-                <div className="flex-1 min-h-0 flex items-center justify-center bg-[#fffdf7] rounded-xl border border-[#cfc6b5] p-2">
-                  <img src="/CV.png" alt="简历" className="w-full max-h-[48vh] object-contain" />
+          <H label="The Action" title="为什么必须重视眼前的设计课？" sub="跨界能力，必须建立在对本职任务的极高标准之上" />
+          <div className="flex-1 min-h-0 pb-3">
+            <W className="h-full min-h-[58vh]">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 h-full items-stretch max-w-[1240px] mx-auto w-full">
+                {/* 左：简历贴底、水平居中 */}
+                <div className="min-h-[62vh] lg:min-h-0 lg:h-full flex flex-col justify-end items-center">
+                  <img
+                    src="/CV.png"
+                    alt="简历"
+                    className="w-full max-w-[520px] mx-auto h-full min-h-[62vh] lg:min-h-[68vh] max-h-[78vh] object-contain object-bottom"
+                  />
                 </div>
-                <div className="flex flex-wrap gap-3 text-[15px] text-[#475569]">
-                  <span className="px-3 py-1.5 bg-[#f7f2e9] rounded-full border border-[#d8d0c1]">专业排名前 3%</span>
-                  <span className="px-3 py-1.5 bg-[#f7f2e9] rounded-full border border-[#d8d0c1]">GPA 4.21</span>
-                  <span className="px-3 py-1.5 bg-[#f7f2e9] rounded-full border border-[#d8d0c1]">国家奖学金 · 丁颖奖学金</span>
+
+                {/* 右：分块排版 */}
+                <div className="flex flex-col h-full min-h-0 gap-4 py-0.5">
+                  <div className="px-4 py-4 rounded-xl bg-[#fffdf7]/95 border border-[#d8d0c1] shadow-[0_4px_14px_rgba(56,48,37,0.06)]">
+                    <p className="text-[#334155] text-base md:text-lg leading-relaxed">
+                      优秀的跨界能力，不是「逃离本专业」，而是先把
+                      <span className="text-emerald-700 font-semibold">当下的设计课做到极高标准</span>
+                      ——拒绝敷衍，才有可迁移的底气。
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="text-xs font-bold text-emerald-700 uppercase tracking-[0.2em] mb-2.5">学术亮点</div>
+                    <div className="grid grid-cols-2 gap-2">
+                      {['专业排名前 3%', 'GPA 4.21', '国家奖学金', '丁颖奖学金'].map((t) => (
+                        <span
+                          key={t}
+                          className="text-center text-sm md:text-[15px] px-3 py-2.5 bg-white/95 rounded-lg text-[#334155] border border-[#e2e8f0] font-medium"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex-1 min-h-0 flex flex-col">
+                    <div className="text-xs font-bold text-emerald-700 uppercase tracking-[0.2em] mb-2.5">心态对照</div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1 min-h-0">
+                      <div className="h-full py-5 px-5 rounded-xl border border-red-200/90 bg-red-50/55 flex flex-col justify-center">
+                        <div className="flex items-center gap-2.5 mb-3 flex-shrink-0">
+                          <XCircle className="w-6 h-6 text-red-600" />
+                          <span className="text-sm font-bold text-red-700 uppercase tracking-wider">错误心态</span>
+                        </div>
+                        <p className="text-[#334155] text-base md:text-[17px] leading-relaxed">
+                          觉得专业没前途 → 设计课投入不足、深度不够 → 缺乏深度思考与解决复杂难题的经验
+                        </p>
+                      </div>
+                      <div className="h-full py-5 px-5 rounded-xl border border-emerald-200 bg-emerald-50/45 flex flex-col justify-center">
+                        <div className="flex items-center gap-2.5 mb-3 flex-shrink-0">
+                          <CheckCircle2 className="w-6 h-6 text-emerald-700" />
+                          <span className="text-sm font-bold text-emerald-800 uppercase tracking-wider">正确心态</span>
+                        </div>
+                        <p className="text-[#334155] text-base md:text-[17px] leading-relaxed">
+                          将设计课视为训练场 → 深入钻研每一个课题逻辑 → 沉淀极强的学习力与抗压韧性
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-3 space-y-2 border-t border-[#d8d0c1]/70 flex-shrink-0">
+                    <p className="text-[#334155] text-base md:text-lg leading-relaxed font-medium">
+                      高绩点不是炫耀，而是<span className="text-emerald-700 font-semibold">学习能力</span>与
+                      <span className="text-emerald-700 font-semibold">态度底线</span>的最直观证据。
+                    </p>
+                    <p className="text-[#64748b] text-sm md:text-base leading-relaxed">
+                      若不愿深挖当下课题，很难说服头部雇主：你能在陌生商业挑战中迎难而上。
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col gap-4 justify-center">
-                <div className={`${TOKENS.card} p-5 border-red-200/80`}>
-                  <div className="text-sm font-bold text-red-600 uppercase tracking-wider mb-2">错误心态</div>
-                  <p className="text-[#334155] text-[16px] leading-relaxed">
-                    觉得专业没前途 → 设计课投入不足 → 缺乏解决复杂难题的深度经验
-                  </p>
-                </div>
-                <div className={`${TOKENS.card} p-5 border-emerald-200`}>
-                  <div className="text-sm font-bold text-emerald-700 uppercase tracking-wider mb-2">正确心态</div>
-                  <p className="text-[#334155] text-[16px] leading-relaxed">
-                    设计课是训练场 → 钻研每个课题逻辑 → 沉淀学习力与抗压韧性
-                  </p>
-                </div>
-                <p className="text-[#64748b] text-[15px] leading-relaxed">
-                  高绩点不是炫耀，而是企业评估「学习能力」与「态度底线」的最直观证据。
-                </p>
               </div>
             </W>
           </div>
@@ -258,64 +368,56 @@ export default function Presentation() {
       ),
     },
 
-    /* ── SCAU 05 视野拔高 ─────────────────────────────────────── */
+    /* ── SCAU 05 视野拔高（满版 · 毕设预告） ───────────────────── */
     {
       id: 105,
       content: (
         <S>
-          <H label="The Vision" title="风景园林的下一个形态" sub="NUS 毕设 · 技术与专业的融合（预告）" />
-          <div className="flex-1 min-h-0 pb-6">
-            <W className="h-full grid grid-cols-[1fr_1fr] gap-8 items-center">
-              <div className="flex flex-col gap-4">
-                <div className={`${TOKENS.card} p-5`}>
-                  <h4 className="text-xl font-semibold text-[#1f2937] mb-2">From Preferences to Places</h4>
-                  <p className="text-[#475569] text-[16px] leading-relaxed">NUS MLA2 毕业设计 · 作品入选 NUS 设计年鉴</p>
-                </div>
-                {[
-                  { t: 'Landscape Pro', d: '针对「沟通黑盒」，开发可计算的参与式设计平台' },
-                  { t: '数据闭环', d: '用户交互 → JSON → Python → 设计意图热力图' },
-                ].map((item, i) => (
-                  <div key={i} className="py-3 px-4 bg-[#fffdf7] rounded-xl border border-[#cfc6b5]">
-                    <h4 className="font-semibold text-emerald-700 text-[17px] mb-1">{item.t}</h4>
-                    <p className="text-[#475569] text-[15px]">{item.d}</p>
-                  </div>
-                ))}
-                <p className="text-[#64748b] text-[15px] leading-relaxed">
-                  风景园林正在与 AI、数据分析深度融合——打好设计基础，同时积极拥抱新技术，自己去定义专业边界。
-                </p>
-              </div>
-              <div className="min-h-0 flex items-center justify-center">
-                <img src="/Landscape-Pro.jpg" alt="Landscape Pro" className="w-full max-h-[52vh] object-contain rounded-lg" />
-              </div>
-            </W>
-          </div>
-        </S>
-      ),
-    },
+          <H label="The Vision" title="风景园林 + 数据：一条走得通的工作流" sub="NUS 毕设 · 技术与专业的融合" />
+          <div className="flex-1 min-h-0 pb-3 flex flex-col justify-start">
+            <W className="h-full flex flex-col gap-3.5 max-w-[1240px] mx-auto w-full min-h-0">
+              <p className="text-base md:text-lg text-[#64748b] text-center leading-relaxed flex-shrink-0">
+                专业没有走到死胡同——<span className="text-emerald-700 font-semibold">AI 与数据</span>正在重塑风景园林，关键是你是否愿意亲手定义下一阶段的边界。
+              </p>
 
-    /* ── SCAU 06 Q&A ──────────────────────────────────────────── */
-    {
-      id: 106,
-      content: (
-        <S>
-          <div className="flex flex-col h-full items-center justify-center py-6">
-            <W className="flex flex-col items-center gap-6 max-w-2xl text-center">
-              <div>
-                <div className="text-[11px] font-bold tracking-[0.24em] text-emerald-700 uppercase mb-2.5">Q & A</div>
-                <h2 className="text-5xl md:text-6xl font-bold leading-tight" style={{ fontFamily: TOKENS.fontDisplay }}>感谢聆听</h2>
-                <p className="mt-3 text-[#475569] text-lg">欢迎提问与交流 · 接下来进入毕设汇报</p>
-              </div>
-              <div className={`${TOKENS.card} p-8 w-full text-left space-y-4`}>
-                <div>
-                  <div className="text-emerald-700 font-semibold text-sm uppercase tracking-wider mb-1">演讲人</div>
-                  <div className="text-[#1f2937] text-xl font-medium">温广源</div>
+              <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.12fr] gap-6 lg:gap-8 items-center flex-1 min-h-0 -mt-20 lg:-mt-24">
+                <div className="flex flex-col gap-3">
+                  <div className={`${TOKENS.card} px-5 py-4`}>
+                    <div className="text-xs font-bold text-emerald-700 uppercase tracking-[0.2em] mb-1.5">NUS MLA2 毕业设计</div>
+                    <h3 className="text-xl md:text-2xl font-bold text-[#1e3a5f] leading-tight mb-1">From Preferences to Places</h3>
+                    <p className="text-[#475569] text-sm md:text-base">可计算、人主导的公园更新 · 民主参与 × 专业转译</p>
+                  </div>
+                  <div className="flex items-center gap-2.5 px-4 py-3 rounded-xl bg-emerald-100/70 border border-emerald-200">
+                    <Sparkles className="w-6 h-6 text-emerald-700 flex-shrink-0" />
+                    <div className="text-xs font-bold text-emerald-800 uppercase tracking-wider">入选 NUS 设计年鉴</div>
+                  </div>
+                  <div className="flex flex-col gap-2.5">
+                    {[
+                      { Icon: MapPin, title: 'Landscape Pro', d: 'Web 端可计算参与式设计，破解沟通黑盒' },
+                      { Icon: Database, title: '结构化数据', d: '交互 → JSON，对接 CAD / Grasshopper' },
+                      { Icon: Workflow, title: '共识热力图', d: 'Python + 概率网格 → 可画的空间证据' },
+                    ].map((item) => (
+                      <div key={item.title} className="flex gap-3 py-3 px-4 bg-white/95 rounded-xl border border-[#e2e8f0]">
+                        <div className="w-9 h-9 rounded-lg bg-emerald-100/80 border border-emerald-200 flex items-center justify-center flex-shrink-0">
+                          <item.Icon className="w-4 h-4 text-emerald-700" />
+                        </div>
+                        <div className="min-w-0">
+                          <h4 className="font-semibold text-[#1f2937] text-base mb-0.5">{item.title}</h4>
+                          <p className="text-[#475569] text-sm leading-snug">{item.d}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div>
-                  <div className="text-emerald-700 font-semibold text-sm uppercase tracking-wider mb-1">微信 / 联系方式</div>
-                  <div className="text-[#475569] text-lg" data-no-flip>（请补充你的联系方式）</div>
+
+                <div className="flex items-center justify-center w-full">
+                  <img
+                    src="/Landscape-Pro.jpg"
+                    alt="Landscape Pro"
+                    className="w-full max-h-[58vh] lg:max-h-[64vh] object-contain"
+                  />
                 </div>
               </div>
-              <p className="text-sm text-[#94a3b8]">按 → 继续 · 进入 Design Thesis 演示</p>
             </W>
           </div>
         </S>
@@ -986,6 +1088,88 @@ export default function Presentation() {
                 <Button size="lg" onClick={() => navigate('/')} className="bg-[#f4eee3] hover:bg-[#ede4d1] text-[#1f2937] border border-[#cfc6b5] px-10 py-6 text-lg rounded-xl">
                   <Home className="mr-2 w-5 h-5" />Back to Home
                 </Button>
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── SCAU 06 Q&A（全 deck 最后一页） ─────────────────────── */
+    {
+      id: 106,
+      content: (
+        <S>
+          <div className="relative flex flex-col h-full justify-center py-4 pb-8">
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-[18%] left-[8%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">设计课</div>
+              <div className="absolute top-[22%] right-[9%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">跨界</div>
+              <div className="absolute bottom-[18%] left-[10%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">数据</div>
+              <div className="absolute bottom-[14%] right-[8%] text-[12px] tracking-[0.18em] uppercase text-emerald-700/25">可能</div>
+            </div>
+            <W className="relative flex flex-col gap-3 max-w-[1320px] -mt-10 lg:-mt-14">
+              <div className="text-center shrink-0">
+                <div className="text-[11px] font-bold tracking-[0.24em] text-emerald-700 uppercase mb-1.5">Q & A</div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" style={{ fontFamily: TOKENS.fontDisplay }}>感谢聆听</h2>
+                <p className="mt-1.5 text-[#475569] text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                  欢迎提问与交流
+                </p>
+              </div>
+
+              <div
+                className={`${TOKENS.card} p-8 lg:px-16 lg:py-10 flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-0 w-fit max-w-[1380px] mx-auto`}
+                data-no-flip
+              >
+                <div className="flex flex-col justify-between text-left lg:max-w-[780px] lg:pr-20">
+                  <div>
+                    <div className="text-[11px] font-bold tracking-[0.2em] text-emerald-700 uppercase mb-2.5">今天想带走的三句话</div>
+                    <ul className="space-y-3">
+                      {[
+                        { icon: <Users className="w-5 h-5 text-emerald-700 shrink-0" />, title: '设计课', desc: '把当下课题做到位，比焦虑未来更有用' },
+                        { icon: <Lightbulb className="w-5 h-5 text-emerald-700 shrink-0" />, title: '多一种可能', desc: '园林 + 数据，不必二选一' },
+                        { icon: <MessageCircle className="w-5 h-5 text-emerald-700 shrink-0" />, title: '欢迎提问', desc: '分享会结束也欢迎继续交流' },
+                      ].map((item) => (
+                        <li key={item.title} className="flex gap-3 items-start">
+                          <div className="w-9 h-9 rounded-full bg-emerald-100/80 flex items-center justify-center shrink-0">{item.icon}</div>
+                          <div>
+                            <div className="font-semibold text-[#1f2937] text-lg leading-snug">{item.title}</div>
+                            <p className="text-[#64748b] text-sm md:text-base leading-relaxed mt-0.5">{item.desc}</p>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-4 pt-4 border-t border-[#e8e0d2] space-y-3.5">
+                    <div>
+                      <div className="text-emerald-700 font-semibold text-xs uppercase tracking-wider mb-1">演讲人</div>
+                      <div className="text-[#1f2937] text-2xl font-semibold">温广源</div>
+                      <div className="text-[#64748b] text-sm mt-1">2020 级华农园林 · NUS MLA</div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-emerald-100/80 flex items-center justify-center shrink-0">
+                        <Mail className="w-5 h-5 text-emerald-700" />
+                      </div>
+                      <div className="min-w-0">
+                        <div className="text-emerald-700 font-semibold text-xs uppercase tracking-wider mb-0.5">邮箱</div>
+                        <a
+                          href="mailto:13539885019@163.com"
+                          className="text-[#1f2937] text-base md:text-lg font-medium hover:text-emerald-700 transition-colors break-all"
+                        >
+                          13539885019@163.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex-shrink-0 flex items-center justify-center border-t lg:border-t-0 lg:border-l border-[#e8e0d2] pt-6 lg:pt-0 lg:pl-20 lg:pr-6">
+                  <img
+                    src="/wechat.jpg"
+                    alt="微信"
+                    className="h-[min(54vh,400px)] w-auto object-contain rounded-xl drop-shadow-[0_12px_32px_rgba(56,48,37,0.14)]"
+                  />
+                </div>
               </div>
             </W>
           </div>

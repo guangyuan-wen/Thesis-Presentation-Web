@@ -74,7 +74,253 @@ export default function Presentation() {
   const [showL, setShowL] = useState(false);
   const [showR, setShowR] = useState(false);
 
+  const scauOffers = [
+    '招商银行 · 广州/深圳分行 · 对公市场营销',
+    '招商银行 · 总行远程客户经理',
+    '华润 · 营销管培',
+    '深信服 · 产品经理',
+    '广州地铁 · 商业分析岗',
+    '特发集团 · 售前支持',
+    '玛氏 · 创研供应',
+  ];
+
   const slides: Slide[] = [
+
+    /* ── SCAU 01 封面 ───────────────────────────────────────── */
+    {
+      id: 101,
+      content: (
+        <S>
+          <div className="relative flex flex-col items-center justify-center h-full text-center px-12">
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-[22%] left-[8%] text-[12px] tracking-[0.18em] text-emerald-700/25">跨界求职</div>
+              <div className="absolute top-[28%] right-[9%] text-[12px] tracking-[0.18em] text-emerald-700/25">设计课</div>
+              <div className="absolute bottom-[27%] left-[10%] text-[12px] tracking-[0.18em] text-emerald-700/25">毕设</div>
+              <div className="absolute bottom-[22%] right-[8%] text-[12px] tracking-[0.18em] text-emerald-700/25">数字前沿</div>
+              <div className="absolute left-[7%] top-[30%] bottom-[30%] w-px bg-gradient-to-b from-transparent via-emerald-700/18 to-transparent" />
+              <div className="absolute right-[7%] top-[30%] bottom-[30%] w-px bg-gradient-to-b from-transparent via-emerald-700/18 to-transparent" />
+            </div>
+            <div
+              className="inline-flex items-center gap-2 px-5 py-2 bg-emerald-100/80 border border-emerald-200 rounded-full text-emerald-700 text-sm font-semibold tracking-widest mb-7"
+              style={{ fontFamily: TOKENS.fontScript }}
+            >
+              <span className="w-2 h-2 bg-emerald-700 rounded-full animate-pulse" />
+              华南农业大学 · 园林专业分享会
+            </div>
+            <h1 className="text-5xl md:text-7xl leading-[1.05] mb-4" style={{ fontFamily: TOKENS.fontDisplay }}>
+              <span className="text-[#243247] block tracking-tight">不设限的风景园林</span>
+              <span className="text-emerald-700 block tracking-tight text-4xl md:text-6xl mt-3">从数字前沿到多元职场</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-[#475569] mb-9 max-w-3xl" style={{ fontFamily: TOKENS.fontBody }}>
+              写给大二的你：在 NUS 做毕设与跨界求职的一些感悟
+            </p>
+            <div className="flex items-center gap-10 text-base">
+              <div className="text-center">
+                <div className="text-emerald-700 font-semibold text-sm tracking-wider mb-1.5">演讲人</div>
+                <div className="text-[#1f2937] font-medium text-xl">温广源</div>
+              </div>
+              <div className="w-px h-12 bg-[#d8d0c1]" />
+              <div className="text-center">
+                <div className="text-[#64748b] text-sm mb-1.5">背景</div>
+                <div className="text-[#1f2937] text-lg font-medium">2020 级华农园林校友</div>
+                <div className="text-[#475569] text-lg">NUS 景观建筑 · MLA</div>
+              </div>
+            </div>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── SCAU 02 现状破冰 ─────────────────────────────────────── */
+    {
+      id: 102,
+      content: (
+        <S>
+          <H label="The Situation" title="打破「专业壁垒」的迷思" sub="用真实的 Offer 矩阵，缓解专业焦虑" />
+          <div className="flex-1 min-h-0 pb-6 flex flex-col">
+            <W className="flex-shrink-0 mb-4">
+              <div className={`${TOKENS.card} p-5`}>
+                <div className="text-sm font-bold text-emerald-700 uppercase tracking-wider mb-3">求职战绩（节选）</div>
+                <div className="flex flex-wrap gap-2 justify-center">
+                  {scauOffers.map((o) => (
+                    <span key={o} className="text-sm px-3 py-1.5 bg-[#f7f2e9] rounded-full text-[#334155] border border-[#d8d0c1]">{o}</span>
+                  ))}
+                </div>
+              </div>
+            </W>
+            <W className="flex-1 min-h-0 grid grid-cols-[1fr_1fr] gap-8 items-center">
+              <div className="space-y-4">
+                <p className="text-[#334155] text-[18px] leading-relaxed">
+                  一个<span className="text-emerald-700 font-semibold">纯风景园林本硕生</span>，为什么能拿到这些看似毫不相关的岗位？
+                </p>
+                <p className="text-[#475569] text-[16px] leading-relaxed">
+                  承认专业差异的存在，但在真实商业环境中，绝大多数岗位（除少数硬核技术岗）更看重
+                  <span className="font-semibold text-[#1f2937]">综合素质</span>，而非单一专业标签。
+                </p>
+              </div>
+              <div className="min-h-0 flex items-center justify-center">
+                <img src="/mars-jd.png" alt="玛氏 JD" className="w-full max-h-[46vh] object-contain rounded-lg border border-[#d8d0c1] shadow-[0_6px_16px_rgba(56,48,37,0.09)]" />
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── SCAU 03 深度拆解 ─────────────────────────────────────── */
+    {
+      id: 103,
+      content: (
+        <S>
+          <H label="The Analysis" title="企业到底在买单什么？" sub="玛氏 AC 面核心标准 · 商业词汇与园林语境" />
+          <div className="flex-1 min-h-0 pb-6">
+            <W className="h-full grid lg:grid-cols-2 gap-6 items-start">
+              <div className="space-y-3">
+                {[
+                  { t: '学习敏锐度 Learning Agility', d: '快速掌握新场地、规范与工具' },
+                  { t: '全局视野与系统性解决问题', d: '从概念草图到扩初落地的全流程' },
+                  { t: '商业洞察力', d: '场地调研、痛点挖掘与方案说服力' },
+                ].map((item, i) => (
+                  <div key={i} className="py-3 px-4 bg-[#fffdf7] rounded-xl border border-[#cfc6b5] shadow-[0_6px_16px_rgba(56,48,37,0.09)]">
+                    <div className="w-2.5 h-2.5 bg-emerald-700 rounded-full mb-2" />
+                    <h4 className="font-semibold text-[#1f2937] text-[17px] mb-1">{item.t}</h4>
+                    <p className="text-[#475569] text-[15px] leading-snug">{item.d}</p>
+                  </div>
+                ))}
+                <p className="text-[#64748b] text-[15px] leading-relaxed pt-1">
+                  面试官不考植物学，但会深挖你面对复杂系统时的拆解能力——设计课训练的逻辑推演，正是商业世界渴求的底层资产。
+                </p>
+              </div>
+              <div className={`${TOKENS.card} overflow-hidden`}>
+                <div className="text-[13px] text-emerald-700 font-semibold uppercase tracking-wider border-b border-[#d8d0c1] px-4 py-3 bg-[#f4eee3]">
+                  概念转译 · 商业 → 园林
+                </div>
+                <table className="w-full text-[15px]">
+                  <tbody>
+                    {[
+                      ['商业 / 需求分析', '场地调研与痛点挖掘'],
+                      ['项目管理与统筹', '概念草图到扩初设计的落地'],
+                      ['跨部门沟通', '与甲方、施工方、公众的协调'],
+                    ].map((row, i) => (
+                      <tr key={i} className="border-b border-[#e5dece]">
+                        <td className="py-3 px-4 text-[#334155] font-medium">{row[0]}</td>
+                        <td className="py-3 px-4 text-[#475569]">{row[1]}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── SCAU 04 设计课 ───────────────────────────────────────── */
+    {
+      id: 104,
+      content: (
+        <S>
+          <H label="The Action" title="为什么必须重视眼前的设计课？" sub="跨界能力，建立在对本职任务的极高标准之上" />
+          <div className="flex-1 min-h-0 pb-6">
+            <W className="h-full grid grid-cols-[1fr_1fr] gap-8 items-stretch">
+              <div className="flex flex-col min-h-0 gap-3">
+                <div className="text-sm font-bold text-emerald-700 uppercase tracking-wider">学术积累</div>
+                <div className="flex-1 min-h-0 flex items-center justify-center bg-[#fffdf7] rounded-xl border border-[#cfc6b5] p-2">
+                  <img src="/CV.png" alt="简历" className="w-full max-h-[48vh] object-contain" />
+                </div>
+                <div className="flex flex-wrap gap-3 text-[15px] text-[#475569]">
+                  <span className="px-3 py-1.5 bg-[#f7f2e9] rounded-full border border-[#d8d0c1]">专业排名前 3%</span>
+                  <span className="px-3 py-1.5 bg-[#f7f2e9] rounded-full border border-[#d8d0c1]">GPA 4.21</span>
+                  <span className="px-3 py-1.5 bg-[#f7f2e9] rounded-full border border-[#d8d0c1]">国家奖学金 · 丁颖奖学金</span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-4 justify-center">
+                <div className={`${TOKENS.card} p-5 border-red-200/80`}>
+                  <div className="text-sm font-bold text-red-600 uppercase tracking-wider mb-2">错误心态</div>
+                  <p className="text-[#334155] text-[16px] leading-relaxed">
+                    觉得专业没前途 → 设计课投入不足 → 缺乏解决复杂难题的深度经验
+                  </p>
+                </div>
+                <div className={`${TOKENS.card} p-5 border-emerald-200`}>
+                  <div className="text-sm font-bold text-emerald-700 uppercase tracking-wider mb-2">正确心态</div>
+                  <p className="text-[#334155] text-[16px] leading-relaxed">
+                    设计课是训练场 → 钻研每个课题逻辑 → 沉淀学习力与抗压韧性
+                  </p>
+                </div>
+                <p className="text-[#64748b] text-[15px] leading-relaxed">
+                  高绩点不是炫耀，而是企业评估「学习能力」与「态度底线」的最直观证据。
+                </p>
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── SCAU 05 视野拔高 ─────────────────────────────────────── */
+    {
+      id: 105,
+      content: (
+        <S>
+          <H label="The Vision" title="风景园林的下一个形态" sub="NUS 毕设 · 技术与专业的融合（预告）" />
+          <div className="flex-1 min-h-0 pb-6">
+            <W className="h-full grid grid-cols-[1fr_1fr] gap-8 items-center">
+              <div className="flex flex-col gap-4">
+                <div className={`${TOKENS.card} p-5`}>
+                  <h4 className="text-xl font-semibold text-[#1f2937] mb-2">From Preferences to Places</h4>
+                  <p className="text-[#475569] text-[16px] leading-relaxed">NUS MLA2 毕业设计 · 作品入选 NUS 设计年鉴</p>
+                </div>
+                {[
+                  { t: 'Landscape Pro', d: '针对「沟通黑盒」，开发可计算的参与式设计平台' },
+                  { t: '数据闭环', d: '用户交互 → JSON → Python → 设计意图热力图' },
+                ].map((item, i) => (
+                  <div key={i} className="py-3 px-4 bg-[#fffdf7] rounded-xl border border-[#cfc6b5]">
+                    <h4 className="font-semibold text-emerald-700 text-[17px] mb-1">{item.t}</h4>
+                    <p className="text-[#475569] text-[15px]">{item.d}</p>
+                  </div>
+                ))}
+                <p className="text-[#64748b] text-[15px] leading-relaxed">
+                  风景园林正在与 AI、数据分析深度融合——打好设计基础，同时积极拥抱新技术，自己去定义专业边界。
+                </p>
+              </div>
+              <div className="min-h-0 flex items-center justify-center">
+                <img src="/Landscape-Pro.jpg" alt="Landscape Pro" className="w-full max-h-[52vh] object-contain rounded-lg" />
+              </div>
+            </W>
+          </div>
+        </S>
+      ),
+    },
+
+    /* ── SCAU 06 Q&A ──────────────────────────────────────────── */
+    {
+      id: 106,
+      content: (
+        <S>
+          <div className="flex flex-col h-full items-center justify-center py-6">
+            <W className="flex flex-col items-center gap-6 max-w-2xl text-center">
+              <div>
+                <div className="text-[11px] font-bold tracking-[0.24em] text-emerald-700 uppercase mb-2.5">Q & A</div>
+                <h2 className="text-5xl md:text-6xl font-bold leading-tight" style={{ fontFamily: TOKENS.fontDisplay }}>感谢聆听</h2>
+                <p className="mt-3 text-[#475569] text-lg">欢迎提问与交流 · 接下来进入毕设汇报</p>
+              </div>
+              <div className={`${TOKENS.card} p-8 w-full text-left space-y-4`}>
+                <div>
+                  <div className="text-emerald-700 font-semibold text-sm uppercase tracking-wider mb-1">演讲人</div>
+                  <div className="text-[#1f2937] text-xl font-medium">温广源</div>
+                </div>
+                <div>
+                  <div className="text-emerald-700 font-semibold text-sm uppercase tracking-wider mb-1">微信 / 联系方式</div>
+                  <div className="text-[#475569] text-lg" data-no-flip>（请补充你的联系方式）</div>
+                </div>
+              </div>
+              <p className="text-sm text-[#94a3b8]">按 → 继续 · 进入 Design Thesis 演示</p>
+            </W>
+          </div>
+        </S>
+      ),
+    },
 
     /* ── 01 COVER ────────────────────────────────────────────── */
     {
